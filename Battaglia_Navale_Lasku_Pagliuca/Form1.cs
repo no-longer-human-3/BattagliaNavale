@@ -16,5 +16,10 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         {
 
         }
+
+        private void label27_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
