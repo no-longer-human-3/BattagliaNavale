@@ -607,7 +607,7 @@
             label34.AutoSize = true;
             label34.Font = new Font("Bodoni MT Condensed", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label34.ForeColor = Color.Navy;
-            label34.Location = new Point(1320, 215);
+            label34.Location = new Point(916, 215);
             label34.Name = "label34";
             label34.Size = new Size(28, 33);
             label34.TabIndex = 39;
@@ -618,7 +618,7 @@
             label35.AutoSize = true;
             label35.Font = new Font("Bodoni MT Condensed", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label35.ForeColor = Color.Navy;
-            label35.Location = new Point(1277, 215);
+            label35.Location = new Point(961, 215);
             label35.Name = "label35";
             label35.Size = new Size(27, 33);
             label35.TabIndex = 40;
@@ -629,7 +629,7 @@
             label36.AutoSize = true;
             label36.Font = new Font("Bodoni MT Condensed", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label36.ForeColor = Color.Navy;
-            label36.Location = new Point(1234, 215);
+            label36.Location = new Point(1011, 215);
             label36.Name = "label36";
             label36.Size = new Size(24, 33);
             label36.TabIndex = 41;
@@ -640,7 +640,7 @@
             label37.AutoSize = true;
             label37.Font = new Font("Bodoni MT Condensed", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label37.ForeColor = Color.Navy;
-            label37.Location = new Point(1189, 215);
+            label37.Location = new Point(1059, 215);
             label37.Name = "label37";
             label37.Size = new Size(27, 33);
             label37.TabIndex = 42;
@@ -651,7 +651,7 @@
             label38.AutoSize = true;
             label38.Font = new Font("Bodoni MT Condensed", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label38.ForeColor = Color.Navy;
-            label38.Location = new Point(1144, 215);
+            label38.Location = new Point(1102, 215);
             label38.Name = "label38";
             label38.Size = new Size(25, 33);
             label38.TabIndex = 43;
@@ -662,7 +662,7 @@
             label39.AutoSize = true;
             label39.Font = new Font("Bodoni MT Condensed", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label39.ForeColor = Color.Navy;
-            label39.Location = new Point(1104, 215);
+            label39.Location = new Point(1149, 215);
             label39.Name = "label39";
             label39.Size = new Size(25, 33);
             label39.TabIndex = 44;
@@ -673,7 +673,7 @@
             label40.AutoSize = true;
             label40.Font = new Font("Bodoni MT Condensed", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label40.ForeColor = Color.Navy;
-            label40.Location = new Point(1059, 215);
+            label40.Location = new Point(1192, 215);
             label40.Name = "label40";
             label40.Size = new Size(27, 33);
             label40.TabIndex = 45;
@@ -684,7 +684,7 @@
             label41.AutoSize = true;
             label41.Font = new Font("Bodoni MT Condensed", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label41.ForeColor = Color.Navy;
-            label41.Location = new Point(1011, 215);
+            label41.Location = new Point(1234, 215);
             label41.Name = "label41";
             label41.Size = new Size(28, 33);
             label41.TabIndex = 46;
@@ -695,7 +695,7 @@
             label42.AutoSize = true;
             label42.Font = new Font("Bodoni MT Condensed", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label42.ForeColor = Color.Navy;
-            label42.Location = new Point(972, 215);
+            label42.Location = new Point(1279, 215);
             label42.Name = "label42";
             label42.Size = new Size(22, 33);
             label42.TabIndex = 47;
@@ -706,7 +706,7 @@
             label43.AutoSize = true;
             label43.Font = new Font("Bodoni MT Condensed", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label43.ForeColor = Color.Navy;
-            label43.Location = new Point(927, 215);
+            label43.Location = new Point(1323, 215);
             label43.Name = "label43";
             label43.Size = new Size(25, 33);
             label43.TabIndex = 48;
