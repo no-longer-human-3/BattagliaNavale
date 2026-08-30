@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            tableLayoutPanel1 = new TableLayoutPanel();
+            tabellone = new TableLayoutPanel();
             pictureBox2 = new PictureBox();
             pannello_di_gioco = new GroupBox();
-            maskedTextBox1 = new MaskedTextBox();
+            cronologia = new TextBox();
+            label3 = new Label();
+            verificaColpo = new Button();
+            coordAvv = new MaskedTextBox();
+            label2 = new Label();
+            spara = new Button();
+            coordProprie = new MaskedTextBox();
             label1 = new Label();
             NostroCampo = new Label();
             CampoAvversario = new Label();
-            button1 = new Button();
-            label2 = new Label();
-            maskedTextBox2 = new MaskedTextBox();
-            button2 = new Button();
-            label3 = new Label();
-            textBox1 = new TextBox();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
@@ -72,7 +72,7 @@
             label31 = new Label();
             label32 = new Label();
             label33 = new Label();
-            tableLayoutPanel2 = new TableLayoutPanel();
+            tabelloneAvv = new TableLayoutPanel();
             label34 = new Label();
             label35 = new Label();
             label36 = new Label();
@@ -87,36 +87,36 @@
             pannello_di_gioco.SuspendLayout();
             SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tabellone
             // 
-            tableLayoutPanel1.BackColor = Color.White;
-            tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-            tableLayoutPanel1.ColumnCount = 10;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 44F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 43F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 42F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 44F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 43F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 41F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 43F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 17F));
-            tableLayoutPanel1.Location = new Point(41, 251);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 10;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 53.3333321F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 46.6666679F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 37F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 46F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tableLayoutPanel1.Size = new Size(432, 445);
-            tableLayoutPanel1.TabIndex = 0;
+            tabellone.BackColor = Color.White;
+            tabellone.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            tabellone.ColumnCount = 10;
+            tabellone.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 44F));
+            tabellone.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 43F));
+            tabellone.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 42F));
+            tabellone.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
+            tabellone.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40F));
+            tabellone.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 44F));
+            tabellone.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 43F));
+            tabellone.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 41F));
+            tabellone.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 43F));
+            tabellone.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 17F));
+            tabellone.Location = new Point(41, 251);
+            tabellone.Name = "tabellone";
+            tabellone.RowCount = 10;
+            tabellone.RowStyles.Add(new RowStyle(SizeType.Percent, 53.3333321F));
+            tabellone.RowStyles.Add(new RowStyle(SizeType.Percent, 46.6666679F));
+            tabellone.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
+            tabellone.RowStyles.Add(new RowStyle(SizeType.Absolute, 37F));
+            tabellone.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
+            tabellone.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tabellone.RowStyles.Add(new RowStyle(SizeType.Absolute, 46F));
+            tabellone.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
+            tabellone.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
+            tabellone.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tabellone.Size = new Size(432, 445);
+            tabellone.TabIndex = 0;
             // 
             // pictureBox2
             // 
@@ -128,17 +128,16 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 3;
             pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
             // 
             // pannello_di_gioco
             // 
-            pannello_di_gioco.Controls.Add(textBox1);
+            pannello_di_gioco.Controls.Add(cronologia);
             pannello_di_gioco.Controls.Add(label3);
-            pannello_di_gioco.Controls.Add(button2);
-            pannello_di_gioco.Controls.Add(maskedTextBox2);
+            pannello_di_gioco.Controls.Add(verificaColpo);
+            pannello_di_gioco.Controls.Add(coordAvv);
             pannello_di_gioco.Controls.Add(label2);
-            pannello_di_gioco.Controls.Add(button1);
-            pannello_di_gioco.Controls.Add(maskedTextBox1);
+            pannello_di_gioco.Controls.Add(spara);
+            pannello_di_gioco.Controls.Add(coordProprie);
             pannello_di_gioco.Controls.Add(label1);
             pannello_di_gioco.Location = new Point(487, 119);
             pannello_di_gioco.Name = "pannello_di_gioco";
@@ -147,12 +146,67 @@
             pannello_di_gioco.TabStop = false;
             pannello_di_gioco.Text = "Pannello di Gioco";
             // 
-            // maskedTextBox1
+            // cronologia
             // 
-            maskedTextBox1.Location = new Point(9, 117);
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(390, 27);
-            maskedTextBox1.TabIndex = 9;
+            cronologia.Location = new Point(8, 429);
+            cronologia.Multiline = true;
+            cronologia.Name = "cronologia";
+            cronologia.Size = new Size(391, 180);
+            cronologia.TabIndex = 14;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(4, 406);
+            label3.Name = "label3";
+            label3.Size = new Size(399, 20);
+            label3.TabIndex = 13;
+            label3.Text = "-----------------------------------------------------------------";
+            // 
+            // verificaColpo
+            // 
+            verificaColpo.Font = new Font("Bodoni MT Condensed", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            verificaColpo.ForeColor = Color.Navy;
+            verificaColpo.Location = new Point(112, 332);
+            verificaColpo.Name = "verificaColpo";
+            verificaColpo.Size = new Size(197, 59);
+            verificaColpo.TabIndex = 12;
+            verificaColpo.Text = "VERIFICA COLPO";
+            verificaColpo.UseVisualStyleBackColor = true;
+            // 
+            // coordAvv
+            // 
+            coordAvv.Location = new Point(9, 285);
+            coordAvv.Name = "coordAvv";
+            coordAvv.Size = new Size(390, 27);
+            coordAvv.TabIndex = 11;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(6, 244);
+            label2.Name = "label2";
+            label2.Size = new Size(397, 20);
+            label2.TabIndex = 10;
+            label2.Text = "Coordinata sparata dall'avversario---------------------------";
+            // 
+            // spara
+            // 
+            spara.Font = new Font("Bodoni MT Condensed", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            spara.ForeColor = Color.Navy;
+            spara.Location = new Point(112, 163);
+            spara.Name = "spara";
+            spara.Size = new Size(197, 59);
+            spara.TabIndex = 8;
+            spara.Text = "SPARA!";
+            spara.UseVisualStyleBackColor = true;
+            // 
+            // coordProprie
+            // 
+            coordProprie.Location = new Point(9, 117);
+            coordProprie.Name = "coordProprie";
+            coordProprie.Size = new Size(390, 27);
+            coordProprie.TabIndex = 9;
             // 
             // label1
             // 
@@ -184,61 +238,6 @@
             CampoAvversario.Size = new Size(279, 47);
             CampoAvversario.TabIndex = 7;
             CampoAvversario.Text = "CAMPO AVVERSARIO";
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Bodoni MT Condensed", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.Navy;
-            button1.Location = new Point(112, 163);
-            button1.Name = "button1";
-            button1.Size = new Size(197, 59);
-            button1.TabIndex = 8;
-            button1.Text = "SPARA!";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(6, 244);
-            label2.Name = "label2";
-            label2.Size = new Size(397, 20);
-            label2.TabIndex = 10;
-            label2.Text = "Coordinata sparata dall'avversario---------------------------";
-            // 
-            // maskedTextBox2
-            // 
-            maskedTextBox2.Location = new Point(9, 285);
-            maskedTextBox2.Name = "maskedTextBox2";
-            maskedTextBox2.Size = new Size(390, 27);
-            maskedTextBox2.TabIndex = 11;
-            // 
-            // button2
-            // 
-            button2.Font = new Font("Bodoni MT Condensed", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.Navy;
-            button2.Location = new Point(112, 332);
-            button2.Name = "button2";
-            button2.Size = new Size(197, 59);
-            button2.TabIndex = 12;
-            button2.Text = "VERIFICA COLPO";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(4, 406);
-            label3.Name = "label3";
-            label3.Size = new Size(399, 20);
-            label3.TabIndex = 13;
-            label3.Text = "-----------------------------------------------------------------";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(8, 429);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(391, 180);
-            textBox1.TabIndex = 14;
             // 
             // label4
             // 
@@ -503,7 +502,6 @@
             label27.Size = new Size(27, 33);
             label27.TabIndex = 31;
             label27.Text = "D";
-            label27.Click += label27_Click;
             // 
             // label28
             // 
@@ -571,36 +569,36 @@
             label33.TabIndex = 37;
             label33.Text = "L";
             // 
-            // tableLayoutPanel2
+            // tabelloneAvv
             // 
-            tableLayoutPanel2.BackColor = Color.White;
-            tableLayoutPanel2.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-            tableLayoutPanel2.ColumnCount = 10;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 44F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 43F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 42F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 44F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 43F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 41F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 43F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 17F));
-            tableLayoutPanel2.Location = new Point(916, 251);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 10;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 53.3333321F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 46.6666679F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 37F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 46F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tableLayoutPanel2.Size = new Size(432, 445);
-            tableLayoutPanel2.TabIndex = 38;
+            tabelloneAvv.BackColor = Color.White;
+            tabelloneAvv.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            tabelloneAvv.ColumnCount = 10;
+            tabelloneAvv.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 44F));
+            tabelloneAvv.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 43F));
+            tabelloneAvv.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 42F));
+            tabelloneAvv.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
+            tabelloneAvv.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40F));
+            tabelloneAvv.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 44F));
+            tabelloneAvv.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 43F));
+            tabelloneAvv.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 41F));
+            tabelloneAvv.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 43F));
+            tabelloneAvv.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 17F));
+            tabelloneAvv.Location = new Point(916, 251);
+            tabelloneAvv.Name = "tabelloneAvv";
+            tabelloneAvv.RowCount = 10;
+            tabelloneAvv.RowStyles.Add(new RowStyle(SizeType.Percent, 53.3333321F));
+            tabelloneAvv.RowStyles.Add(new RowStyle(SizeType.Percent, 46.6666679F));
+            tabelloneAvv.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
+            tabelloneAvv.RowStyles.Add(new RowStyle(SizeType.Absolute, 37F));
+            tabelloneAvv.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
+            tabelloneAvv.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tabelloneAvv.RowStyles.Add(new RowStyle(SizeType.Absolute, 46F));
+            tabelloneAvv.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
+            tabelloneAvv.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
+            tabelloneAvv.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tabelloneAvv.Size = new Size(432, 445);
+            tabelloneAvv.TabIndex = 38;
             // 
             // label34
             // 
@@ -728,7 +726,7 @@
             Controls.Add(label36);
             Controls.Add(label35);
             Controls.Add(label34);
-            Controls.Add(tableLayoutPanel2);
+            Controls.Add(tabelloneAvv);
             Controls.Add(label33);
             Controls.Add(label32);
             Controls.Add(label31);
@@ -763,7 +761,7 @@
             Controls.Add(NostroCampo);
             Controls.Add(pannello_di_gioco);
             Controls.Add(pictureBox2);
-            Controls.Add(tableLayoutPanel1);
+            Controls.Add(tabellone);
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -775,19 +773,19 @@
 
         #endregion
 
-        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel tabellone;
         private PictureBox pictureBox2;
         private GroupBox pannello_di_gioco;
         private Label NostroCampo;
         private Label CampoAvversario;
         private Label label1;
-        private MaskedTextBox maskedTextBox1;
+        private MaskedTextBox coordProprie;
         private Label label2;
-        private Button button1;
-        private TextBox textBox1;
+        private Button spara;
+        private TextBox cronologia;
         private Label label3;
-        private Button button2;
-        private MaskedTextBox maskedTextBox2;
+        private Button verificaColpo;
+        private MaskedTextBox coordAvv;
         private Label label4;
         private Label label5;
         private Label label6;
@@ -818,7 +816,7 @@
         private Label label31;
         private Label label32;
         private Label label33;
-        private TableLayoutPanel tableLayoutPanel2;
+        private TableLayoutPanel tabelloneAvv;
         private Label label34;
         private Label label35;
         private Label label36;
