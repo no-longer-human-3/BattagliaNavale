@@ -6,6 +6,30 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         {
             InitializeComponent();
         }
+        const int righe = 10; // righe della mia tabella
+        const int colonne = 10; // colonne della mia tabella
+        const int navi = 5; // numero di navi che la mia flotta possiede
+
+        int[,] mioCampo = new int[righe, colonne];
+        Nave[] miaFlotta = new Nave[navi];
+
+        // ==========================================
+        // PARTE DEL PROGRAMMATORE 1
+        // ==========================================
+
+        //
+        //
+        //
+
+
+        // ==========================================
+        // PARTE DEL PROGRAMMATORE 2
+        // ==========================================
+
+        //
+        //
+        //
+
     }
 
     public struct Posizione // Struttura per rappresentare la posizione di un quadratino
