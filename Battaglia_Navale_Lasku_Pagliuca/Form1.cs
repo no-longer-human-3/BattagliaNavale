@@ -17,18 +17,18 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         // PARTE DEL PROGRAMMATORE 1
         // ==========================================
 
-        //
-        //
-        //
+        // 1. InizializzaFlotta()
+        // 4. PosizionaNave(...)
+        // 6. ControllaAffondato(...)
 
 
         // ==========================================
         // PARTE DEL PROGRAMMATORE 2
         // ==========================================
 
-        //
-        //
-        //
+        // 2. VerificaCoordinate(...)
+        // 3. ConvertiCoordinate(...)
+        // 5. GestisciColpo(...)
 
     }
 
