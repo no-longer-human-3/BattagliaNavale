@@ -17,20 +17,55 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         // PARTE DEL PROGRAMMATORE 1
         // ==========================================
 
-        // 1. InizializzaFlotta()
-        // 4. PosizionaNave(...)
-        // 6. ControllaAffondato(...)
+        private void InizializzaFlotta()
+        {
+            // Dichiarazione Portaerei
+            miaFlotta[0].nome = "Portaerei";
+            miaFlotta[0].dim = 5;
+            miaFlotta[0].Coord = new Posizione[5];
+            miaFlotta[0].colpiSubiti = new bool[5];
+            miaFlotta[0].affondo = false;
+
+            // Dichiarazione Corazzata
+            miaFlotta[1].nome = "Corazzata";
+            miaFlotta[1].dim = 4;
+            miaFlotta[1].Coord = new Posizione[4];
+            miaFlotta[1].colpiSubiti = new bool[4];
+            miaFlotta[1].affondo = false;
+
+            // Dichiarazione Incrociatore 1
+            miaFlotta[2].nome = "Incrociatore 1";
+            miaFlotta[2].dim = 3;
+            miaFlotta[2].Coord = new Posizione[3];
+            miaFlotta[2].colpiSubiti = new bool[3];
+            miaFlotta[2].affondo = false;
+
+            // Dichiarazione Incrociatore 2
+            miaFlotta[3].nome = "Incrociatore 2";
+            miaFlotta[3].dim = 3;
+            miaFlotta[3].Coord = new Posizione[3];
+            miaFlotta[3].colpiSubiti = new bool[3];
+            miaFlotta[3].affondo = false;
+
+            // Dichiarazione Cacciatorpediniere
+            miaFlotta[4].nome = "Cacciatorpediniere";
+            miaFlotta[4].dim = 2;
+            miaFlotta[4].Coord = new Posizione[2];
+            miaFlotta[4].colpiSubiti = new bool[2];
+            miaFlotta[4].affondo = false;
+            // 4. PosizionaNave(...)
+            // 6. ControllaAffondato(...)
 
 
-        // ==========================================
-        // PARTE DEL PROGRAMMATORE 2
-        // ==========================================
+            // ==========================================
+            // PARTE DEL PROGRAMMATORE 2
+            // ==========================================
 
-        // 2. VerificaCoordinate(...)
-        // 3. ConvertiCoordinate(...)
-        // 5. GestisciColpo(...)
+            // 2. VerificaCoordinate(...)
+            // 3. ConvertiCoordinate(...)
+            // 5. GestisciColpo(...)
 
-    }
+        }
 
     public struct Posizione // Struttura per rappresentare la posizione di un quadratino
     {
