@@ -57,7 +57,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
         private bool VerificaCoordinate(string coordinate) // Funzione per verificare le coordinate inserite dall'utente
         {
-           
+
             if (coordinate.Length < 2 || coordinate.Length > 3)
             {
                 return false;
@@ -65,23 +65,23 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             char[] charValide = { 'A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'L', 'l' };
             bool charValida = false;
 
-            
+
             for (int i = 0; i < charValide.Length; i++)
             {
                 if (coordinate[0] == charValide[i])
                 {
                     charValida = true;
-                    break; 
+                    break;
                 }
             }
 
-            
+
             if (charValida == false)
             {
                 return false;
             }
 
-          
+
             if (coordinate.Length == 2)
             {
                 if (coordinate[1] >= '1' && coordinate[1] <= '9')
@@ -90,7 +90,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
                 }
             }
 
-            
+
             if (coordinate.Length == 3)
             {
                 if (coordinate[1] == '1' && coordinate[2] == '0')
@@ -107,19 +107,55 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             // 5. GestisciColpo(...)
         }
 
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cronologia_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label45_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Elenco_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Elenco.Items.Clear();
+            Elenco.Items.Add("Portaerei (5)");
+            Elenco.Items.Add("Corazzata (4)");
+            Elenco.Items.Add("Incrociatore 1 (3)");
+            Elenco.Items.Add("Incrociatore 2 (3)");
+            Elenco.Items.Add("Cacciatorpediniere (2)");
+        }
+
         public struct Posizione // Struttura per rappresentare la posizione di un quadratino
-    {
-        public int Riga;
-        public int Colonna;
-    }
+        {
+            public int Riga;
+            public int Colonna;
+        }
 
-    public struct Nave
-    {
-        public string nome;
-        public int dim;
-        public Posizione[] Coord;
-        public bool[] colpiSubiti;
-        public bool affondo;
+        public struct Nave
+        {
+            public string nome;
+            public int dim;
+            public Posizione[] Coord;
+            public bool[] colpiSubiti;
+            public bool affondo;
 
+        }
     }
 }
