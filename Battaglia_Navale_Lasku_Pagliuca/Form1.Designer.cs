@@ -256,7 +256,6 @@
             cronologia.Size = new Size(391, 155);
             cronologia.TabIndex = 14;
             cronologia.Text = "Cronologia";
-            cronologia.TextChanged += cronologia_TextChanged;
             // 
             // label3
             // 
@@ -266,7 +265,6 @@
             label3.Size = new Size(381, 20);
             label3.TabIndex = 13;
             label3.Text = "--------------------------------------------------------------";
-            label3.Click += label3_Click;
             // 
             // verificaColpo
             // 
