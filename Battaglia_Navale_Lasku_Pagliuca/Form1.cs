@@ -153,9 +153,27 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
         }
 
-        private void gestisciColpo() 
+        private string GestisciColpo(int[,] griglia, int riga, int colonna) // funzione che controlla l'esito del colpo e aggiorna la matrice
         {
+            // 1. Controlla se nella cella c'è acqua (0)
+            if (griglia[riga, colonna] == 0)
+            {
+                griglia[riga, colonna] = 2; // Imposta a 2 per indicare acqua colpita
+                return "ACQUA!"; // Restituisce il messaggio dell'esito
+            }
+            // 2. Controlla se nella cella c'è una nave (1)
+            else if (griglia[riga, colonna] == 1)
+            {
+                griglia[riga, colonna] = 3; // Imposta a 3 per indicare nave colpita
+                return "COLPITO!"; // Restituisce il messaggio dell'esito
+            }
+            // 3. Controlla se in quella posizione si è già sparato in precedenza (2 o 3)
+            else if (griglia[riga, colonna] == 2 || griglia[riga, colonna] == 3)
+            {
+                return "Hai già sparato in questa posizione!"; // Avvisa l'utente senza modificare la griglia
+            }
 
+            return "Errore"; // Ritorno di sicurezza
         }
 
 
