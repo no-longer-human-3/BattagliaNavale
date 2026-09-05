@@ -66,12 +66,70 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             miaFlotta[4].Coord = new Posizione[2];
             miaFlotta[4].colpiSubiti = new bool[2];
             miaFlotta[4].affondo = false;
+        }
+        private bool PosizionaNave(int indiceNave, Posizione inizio, bool orizzontale) // Definizione funzione (ritorna true se posizionata)
+        {
+            bool esito = true; // Variabile di supporto: parte ipotizzando che la posizione sia valida
+            int dim = miaFlotta[indiceNave].dim; // Recupera la lunghezza della nave selezionata dall'array flotta
 
-            // 4. PosizionaNave(...)
-            // 6. ControllaAffondato(...)
+            if (orizzontale && (inizio.Colonna + dim > colonne)) // Controlla se la nave esce dal campo a destra in orizzontale
+            {
+                esito = false; // Se supera la colonna 10, la posizione non è valida
+            }
 
+            if (!orizzontale && (inizio.Riga + dim > righe)) // Controlla se la nave esce dal campo in basso in verticale
+            {
+                esito = false; // Se supera la riga 10, la posizione non è valida
+            }
+
+            if (esito == true) // Se non esce dai bordi, controlla che non ci siano sovrapposizioni
+            {
+                for (int i = 0; i < dim; i++) // Ciclo per controllare ciascuna casella richiesta dalla nave
+                {
+                    int r = orizzontale ? inizio.Riga : inizio.Riga + i; // Calcola la riga (avanza solo se verticale)
+                    int c = orizzontale ? inizio.Colonna + i : inizio.Colonna; // Calcola la colonna (avanza solo se orizzontale)
+
+                    if (mioCampo[r, c] != 0) // Controlla se nella matrice la casella è già occupata (diverso da 0)
+                    {
+                        esito = false; // Trovata casella occupata: imposta esito a false
+                    }
+                }
+            }
+
+            if (esito == true) // Se tutti i controlli sono superati, salva la nave
+            {
+                for (int i = 0; i < dim; i++) // Ciclo per scrivere la nave nel campo e nella struttura
+                {
+                    int r = orizzontale ? inizio.Riga : inizio.Riga + i; // Ricalcola la riga per la casella corrente
+                    int c = orizzontale ? inizio.Colonna + i : inizio.Colonna; // Ricalcola la colonna per la casella corrente
+
+                    mioCampo[r, c] = 1; // Segna la casella della matrice come occupata da nave (1)
+                    miaFlotta[indiceNave].Coord[i] = new Posizione { Riga = r, Colonna = c }; // Salva le coordinate nella nave
+                }
+            }
+
+            return esito; // Restituisce l'esito finale al pulsante
         }
 
+        private bool ControllaAffondato(int indiceNave) // Definizione funzione (ritorna true se la nave è completamente affondata)
+        {
+            bool affondata = true; // Variabile di supporto: parte ipotizzando che la nave sia affondata
+
+            for (int i = 0; i < miaFlotta[indiceNave].dim; i++) // Scorri tutti i segmenti che compongono la nave
+            {
+                if (miaFlotta[indiceNave].colpiSubiti[i] == false) // Se trova anche solo un segmento NON colpito (false)
+                {
+                    affondata = false; // La nave non è ancora del tutto distrutta: imposta affondata a false
+                }
+            }
+
+            if (affondata == true) // Se dopo il ciclo tutti i segmenti risultano colpiti (affondata è rimasto true)
+            {
+                miaFlotta[indiceNave].affondo = true; // Aggiorna lo stato ufficiale della nave impostando affondo a true
+            }
+
+            return affondata; // Restituisce l'esito finale (true o false) al gestore dei colpi
+        }
         private bool VerificaCoordinate(string coordinate) // Funzione per verificare le coordinate inserite dall'utente
         {
 
