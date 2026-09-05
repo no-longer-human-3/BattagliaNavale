@@ -31,6 +31,9 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         int[,] campoAvv = new int[righe, colonne];
         Nave[] miaFlotta = new Nave[navi];
 
+        bool eOrizzontale = true; // Variabile per salvare l'orientamento scelto dall'utente
+
+
         private void InizializzaFlotta() // Funzione per inizializzare la flotta
         {
             // Dichiarazione Portaerei
@@ -302,16 +305,54 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         }
         private void POSIZIONA_Click(object sender, EventArgs e)
         {
+            // 1. Controlla se è stata selezionata una nave dalla ListBox
+            if (Elenco.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleziona prima una nave dalla lista!");
+            }
+            else
+            {
+                string coordinata = coordProprie.Text; // Prende il testo inserito dall'utente
 
+                // 2. Verifica se la coordinata è valida
+                if (VerificaCoord(coordinata) == true)
+                {
+                    int riga, colonna;
+                    // 3. Converte la coordinata ("A1" -> numeri) con la tua funzione
+                    ConversioneCoord(coordinata, out riga, out colonna);
+
+                    // 4. Prepara la variabile Posizione
+                    Posizione inizio;
+                    inizio.Riga = riga;
+                    inizio.Colonna = colonna;
+
+                    // 5. Tenta il posizionamento con la tua funzione PosNave
+                    if (PosNave(Elenco.SelectedIndex, inizio, eOrizzontale) == true)
+                    {
+                        MessageBox.Show("Nave posizionata con successo!");
+                        coordProprie.Text = ""; // Pulisce la casella di testo
+                    }
+                    else
+                    {
+                        MessageBox.Show("Impossibile posizionare: la nave esce dal campo o si sovrappone!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Coordinata non valida!");
+                }
+            }
         }
         private void Orrizzontale_Click(object sender, EventArgs e)
         {
-
+            eOrizzontale = true; // Imposta l'orientamento a Orizzontale
+            MessageBox.Show("Orientamento impostato su: Orizzontale");
         }
 
         private void Verticale_Click(object sender, EventArgs e)
         {
-
+            eOrizzontale = false; // Imposta l'orientale a Verticale
+            MessageBox.Show("Orientamento impostato su: Verticale");
         }
 
         private void Form1_Load(object sender, EventArgs e)
