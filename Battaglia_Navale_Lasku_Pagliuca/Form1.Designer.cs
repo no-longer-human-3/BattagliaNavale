@@ -32,9 +32,9 @@
             tabellone = new TableLayoutPanel();
             pictureBox2 = new PictureBox();
             pannello_di_gioco = new GroupBox();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
+            POSIZIONA = new Button();
+            Verticale = new Button();
+            Orrizzontale = new Button();
             label46 = new Label();
             label45 = new Label();
             textBox1 = new TextBox();
@@ -130,7 +130,7 @@
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(258, 21);
-            pictureBox2.Margin = new Padding(2, 2, 2, 2);
+            pictureBox2.Margin = new Padding(2);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(881, 68);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -139,9 +139,9 @@
             // 
             // pannello_di_gioco
             // 
-            pannello_di_gioco.Controls.Add(button3);
-            pannello_di_gioco.Controls.Add(button2);
-            pannello_di_gioco.Controls.Add(button1);
+            pannello_di_gioco.Controls.Add(POSIZIONA);
+            pannello_di_gioco.Controls.Add(Verticale);
+            pannello_di_gioco.Controls.Add(Orrizzontale);
             pannello_di_gioco.Controls.Add(label46);
             pannello_di_gioco.Controls.Add(label45);
             pannello_di_gioco.Controls.Add(textBox1);
@@ -162,41 +162,44 @@
             pannello_di_gioco.TabStop = false;
             pannello_di_gioco.Text = "Pannello di Gioco";
             // 
-            // button3
+            // POSIZIONA
             // 
-            button3.Font = new Font("Bodoni MT Condensed", 21F, FontStyle.Bold);
-            button3.ForeColor = Color.Navy;
-            button3.Location = new Point(10, 441);
-            button3.Margin = new Padding(2, 2, 2, 2);
-            button3.Name = "button3";
-            button3.Size = new Size(387, 51);
-            button3.TabIndex = 23;
-            button3.Text = "POSIZIONA!";
-            button3.UseVisualStyleBackColor = true;
+            POSIZIONA.Font = new Font("Bodoni MT Condensed", 21F, FontStyle.Bold);
+            POSIZIONA.ForeColor = Color.Navy;
+            POSIZIONA.Location = new Point(10, 441);
+            POSIZIONA.Margin = new Padding(2);
+            POSIZIONA.Name = "POSIZIONA";
+            POSIZIONA.Size = new Size(387, 51);
+            POSIZIONA.TabIndex = 23;
+            POSIZIONA.Text = "POSIZIONA!";
+            POSIZIONA.UseVisualStyleBackColor = true;
+            POSIZIONA.Click += POSIZIONA_Click;
             // 
-            // button2
+            // Verticale
             // 
-            button2.Font = new Font("Bodoni MT Condensed", 13F, FontStyle.Bold);
-            button2.ForeColor = Color.Navy;
-            button2.Location = new Point(190, 406);
-            button2.Margin = new Padding(2, 2, 2, 2);
-            button2.Name = "button2";
-            button2.Size = new Size(207, 29);
-            button2.TabIndex = 22;
-            button2.Text = "VERTICALE";
-            button2.UseVisualStyleBackColor = true;
+            Verticale.Font = new Font("Bodoni MT Condensed", 13F, FontStyle.Bold);
+            Verticale.ForeColor = Color.Navy;
+            Verticale.Location = new Point(190, 406);
+            Verticale.Margin = new Padding(2);
+            Verticale.Name = "Verticale";
+            Verticale.Size = new Size(207, 29);
+            Verticale.TabIndex = 22;
+            Verticale.Text = "VERTICALE";
+            Verticale.UseVisualStyleBackColor = true;
+            Verticale.Click += Verticale_Click;
             // 
-            // button1
+            // Orrizzontale
             // 
-            button1.Font = new Font("Bodoni MT Condensed", 13F, FontStyle.Bold);
-            button1.ForeColor = Color.Navy;
-            button1.Location = new Point(190, 373);
-            button1.Margin = new Padding(2, 2, 2, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(208, 29);
-            button1.TabIndex = 21;
-            button1.Text = "ORIZZONTALE";
-            button1.UseVisualStyleBackColor = true;
+            Orrizzontale.Font = new Font("Bodoni MT Condensed", 13F, FontStyle.Bold);
+            Orrizzontale.ForeColor = Color.Navy;
+            Orrizzontale.Location = new Point(190, 373);
+            Orrizzontale.Margin = new Padding(2);
+            Orrizzontale.Name = "Orrizzontale";
+            Orrizzontale.Size = new Size(208, 29);
+            Orrizzontale.TabIndex = 21;
+            Orrizzontale.Text = "ORIZZONTALE";
+            Orrizzontale.UseVisualStyleBackColor = true;
+            Orrizzontale.Click += Orrizzontale_Click;
             // 
             // label46
             // 
@@ -220,7 +223,7 @@
             // textBox1
             // 
             textBox1.Location = new Point(191, 321);
-            textBox1.Margin = new Padding(2, 2, 2, 2);
+            textBox1.Margin = new Padding(2);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Inserisci la posizione (es. A1)";
             textBox1.Size = new Size(209, 27);
@@ -242,7 +245,7 @@
             Elenco.FormattingEnabled = true;
             Elenco.Items.AddRange(new object[] { "Portaerei (5)", "Corazzata (4)", "Incrociatore 1 (3)", "Incrociatore 2 (3)", "Cacciatorpediniere (2)" });
             Elenco.Location = new Point(10, 314);
-            Elenco.Margin = new Padding(2, 2, 2, 2);
+            Elenco.Margin = new Padding(2);
             Elenco.Name = "Elenco";
             Elenco.Size = new Size(179, 124);
             Elenco.TabIndex = 16;
@@ -276,6 +279,7 @@
             verificaColpo.TabIndex = 12;
             verificaColpo.Text = "VERIFICA COLPO";
             verificaColpo.UseVisualStyleBackColor = true;
+            verificaColpo.Click += verificaColpo_Click;
             // 
             // coordAvv
             // 
@@ -303,6 +307,7 @@
             spara.TabIndex = 8;
             spara.Text = "SPARA!";
             spara.UseVisualStyleBackColor = true;
+            spara.Click += spara_Click;
             // 
             // coordProprie
             // 
@@ -867,6 +872,7 @@
             Controls.Add(tabellone);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             pannello_di_gioco.ResumeLayout(false);
             pannello_di_gioco.PerformLayout();
@@ -933,10 +939,10 @@
         private TextBox textBox1;
         private ListBox Elenco;
         private Label label44;
-        private Button button2;
-        private Button button1;
+        private Button Verticale;
+        private Button Orrizzontale;
         private Label label46;
         private Label label45;
-        private Button button3;
+        private Button POSIZIONA;
     }
 }

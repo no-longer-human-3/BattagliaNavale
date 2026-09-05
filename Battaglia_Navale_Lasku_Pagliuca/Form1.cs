@@ -176,8 +176,8 @@ namespace Battaglia_Navale_Lasku_Pagliuca
                     return true; // se è vero esce dalla funzione e restituisce true quindi la coordinata è valida
                 }
             }
-            
-            return false; 
+
+            return false;
         }
 
         private void ConversioneCoord(string coordinate, out int riga, out int colonna) // funzione che mi converte le coordinate inserite dall'utente in coordinate numeriche poichè il computer non riesce a leggere le lettere quindi le converte in numeri
@@ -189,7 +189,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
             for (int c = 0; c < lettereMaiusc.Length; c++) // Scorre l'array delle lettere una alla volta, dall'inizio alla fine
             {
-                
+
                 if (coordinate[0] == lettereMaiusc[c] || coordinate[0] == lettereMin[c]) // controlla se la prima lettera della coordinata inserita dall'utente è uguale a una delle lettere negli array delle maiuscole o delle minuscole
                 {
                     riga = c; // Se la lettera coincide, assegna a riga l'indice dell'array
@@ -198,7 +198,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
             if (coordinate.Length == 2) // controlla se la coordinata è lunga 2 caratteri
             {
-                char[] num= { '1', '2', '3', '4', '5', '6', '7', '8', '9' }; // Array contenente i caratteri dei numeri da 1 a 9
+                char[] num = { '1', '2', '3', '4', '5', '6', '7', '8', '9' }; // Array contenente i caratteri dei numeri da 1 a 9
                 for (int i = 0; i < num.Length; i++) // Scorre l'array dei numeri dal'inizio alla fine
                 {
                     if (coordinate[1] == num[i]) // controlla se il secondo carattere della coordinata equivale al numero dell'array
@@ -215,21 +215,21 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         }
 
         private string GestioneColpo(int[,] tabella, int riga, int colonna) // funzione che controlla il colpo e aggiorna la griglia in base all'esito
-        { 
+        {
             //(0 = acqua , 1 = nave , 2 = acqua già colpita, 3 = nave già colpita)
-            
+
             if (tabella[riga, colonna] == 0) // controlla se nella cella selezione c'è acqua quindi non c'è una nave(0)
             {
                 tabella[riga, colonna] = 2; // la cella viene impostata a 2 per indicare acqua già colpita
                 return "ACQUA"; // Viene restituito il messaggio dell'esito del colpo
             }
-            
+
             else if (tabella[riga, colonna] == 1) // controlla se nella cella selezionata c'è una nave (1)
             {
                 tabella[riga, colonna] = 3; // la cella viene impostata a 3 per indicare nave già colpita
                 return "COLPITO"; //Viene restituito il messaggio dell'esito del colpo
             }
-            
+
             else if (tabella[riga, colonna] == 2 || tabella[riga, colonna] == 3) // si viene controllato se in quelle posizioni si è già stato sparato in precedenza (2 o 3)
             {
                 return "HAI GIA SPARATO QUI IN QUESTA POSIZIONE"; // Avvisa l'utente senza modificare la griglia
@@ -247,6 +247,34 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             Elenco.Items.Add("Incrociatore 1 (3)");
             Elenco.Items.Add("Incrociatore 2 (3)");
             Elenco.Items.Add("Cacciatorpediniere (2)");
+        }
+
+        private void spara_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void verificaColpo_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void POSIZIONA_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void Orrizzontale_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Verticale_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
