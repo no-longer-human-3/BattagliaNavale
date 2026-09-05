@@ -28,6 +28,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         const int navi = 5; // numero di navi che la mia flotta possiede
 
         int[,] mioCampo = new int[righe, colonne];
+        int[,] campoAvv = new int[righe, colonne];
         Nave[] miaFlotta = new Nave[navi];
 
         private void InizializzaFlotta() // Funzione per inizializzare la flotta
@@ -268,11 +269,35 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
         private void spara_Click(object sender, EventArgs e)
         {
-
+            string coordinata = coordProprie.Text; // Prende la coordinata inserita dall'utente
+            if (VerificaCoord(coordinata) == true) 
+            {
+                int riga, colonna; // Variabili per memorizzare le coordinate convertite
+                ConversioneCoord(coordinata, out riga, out colonna); // Converte la coordinata in numeri
+                string risultato = GestioneColpo(campoAvv, riga, colonna); // Controlla il colpo e aggiorna la griglia
+                MessageBox.Show("Risultato del colpo: " + risultato); // Mostra il risultato del colpo all'utente
+                coordProprie.Text = ""; // Pulisce la casella di testo dopo il colpo
+            } else 
+            {
+                MessageBox.Show("Coordinata non valida,inserisci una coordinata corretta."); // Avvisa l'utente che la coordinata inserita non è valida
+            }
         }
 
         private void verificaColpo_Click(object sender, EventArgs e)
         {
+            string coordinata = coordAvv.Text; // Prende la coordinata inserita dall'utente
+            if (VerificaCoord(coordinata) == true)
+            {
+                int riga, colonna; // Variabili per memorizzare le coordinate convertite
+                ConversioneCoord(coordinata, out riga, out colonna); // Converte la coordinata in numeri
+                string risultato = GestioneColpo(mioCampo, riga, colonna); // Controlla il colpo e aggiorna la griglia
+                MessageBox.Show("Risposta dall'avversario: " + risultato); // Mostra il risultato del colpo all'utente
+                coordAvv.Text = ""; // Pulisce la casella di testo dopo il colpo
+            }
+            else
+            {
+                MessageBox.Show("Coordinata  avversarianon valida"); // Avvisa l'utente che la coordinata inserita non è valida
+            }
 
         }
         private void POSIZIONA_Click(object sender, EventArgs e)
@@ -291,7 +316,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            InizializzaFlotta(); // prepara le navi all'avvio
         }
     }
 }
