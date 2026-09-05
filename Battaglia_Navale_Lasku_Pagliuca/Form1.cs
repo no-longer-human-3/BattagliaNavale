@@ -2,7 +2,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Battaglia_Navale_Lasku_Pagliuca
 {
-    public struct Posizione // Struttura per rappresentare la posizione di un quadratino
+    public struct Posizione
     {
         public int Riga;
         public int Colonna;
@@ -86,8 +86,17 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             {
                 for (int i = 0; i < dim; i++) // Ciclo per controllare ciascuna casella richiesta dalla nave
                 {
-                    int r = orizzontale ? inizio.Riga : inizio.Riga + i; // Calcola la riga (avanza solo se verticale)
-                    int c = orizzontale ? inizio.Colonna + i : inizio.Colonna; // Calcola la colonna (avanza solo se orizzontale)
+                    int r = inizio.Riga; // Inizializza la riga con il valore di partenza
+                    int c = inizio.Colonna; // Inizializza la colonna con il valore di partenza
+
+                    if (orizzontale == true) // Se la nave è piazzata in orizzontale
+                    {
+                        c = inizio.Colonna + i; // Sposta la colonna in avanti di i caselle
+                    }
+                    else // Se la nave è piazzata in verticale
+                    {
+                        r = inizio.Riga + i; // Sposta la riga in avanti di i caselle
+                    }
 
                     if (mioCampo[r, c] != 0) // Controlla se nella matrice la casella è già occupata (diverso da 0)
                     {
@@ -100,14 +109,22 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             {
                 for (int i = 0; i < dim; i++) // Ciclo per scrivere la nave nel campo e nella struttura
                 {
-                    int r = orizzontale ? inizio.Riga : inizio.Riga + i; // Ricalcola la riga per la casella corrente
-                    int c = orizzontale ? inizio.Colonna + i : inizio.Colonna; // Ricalcola la colonna per la casella corrente
+                    int r = inizio.Riga; // Inizializza la riga con il valore di partenza
+                    int c = inizio.Colonna; // Inizializza la colonna con il valore di partenza
+
+                    if (orizzontale == true) // Se la nave è piazzata in orizzontale
+                    {
+                        c = inizio.Colonna + i; // Sposta la colonna in avanti per registrare il segmento
+                    }
+                    else // Se la nave è piazzata in verticale
+                    {
+                        r = inizio.Riga + i; // Sposta la riga in avanti per registrare il segmento
+                    }
 
                     mioCampo[r, c] = 1; // Segna la casella della matrice come occupata da nave (1)
                     miaFlotta[indiceNave].Coord[i] = new Posizione { Riga = r, Colonna = c }; // Salva le coordinate nella nave
                 }
             }
-
             return esito; // Restituisce l'esito finale al pulsante
         }
 
