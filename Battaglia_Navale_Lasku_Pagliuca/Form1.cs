@@ -67,7 +67,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             miaFlotta[4].colpiSubiti = new bool[2];
             miaFlotta[4].affondo = false;
         }
-        private bool PosizionaNave(int indiceNave, Posizione inizio, bool orizzontale) // Definizione funzione (ritorna true se posizionata)
+        private bool PosNave(int indiceNave, Posizione inizio, bool orizzontale) // Definizione funzione (ritorna true se posizionata)
         {
             bool esito = true; // Variabile di supporto: parte ipotizzando che la posizione sia valida
             int dim = miaFlotta[indiceNave].dim; // Recupera la lunghezza della nave selezionata dall'array flotta
@@ -130,7 +130,10 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
             return affondata; // Restituisce l'esito finale (true o false) al gestore dei colpi
         }
-        private bool VerificaCoordinate(string coordinate) // Funzione per verificare le coordinate inserite dall'utente
+
+
+
+        private bool VerificaCoord(string coordinate) // Funzione per verificare le coordinate inserite dall'utente
         {
 
             if (coordinate.Length < 2 || coordinate.Length > 3) // la coordinata deve essere lunga massimo di 3 caratteri e mai minore di 2 
@@ -177,30 +180,30 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             return false; 
         }
 
-        private void ConversioneCoordinate(string coordinate, out int riga, out int colonna) // funzione che mi converte le coordinate inserite dall'utente in coordinate numeriche poichè il computer non riesce a leggere le lettere quindi le converte in numeri
+        private void ConversioneCoord(string coordinate, out int riga, out int colonna) // funzione che mi converte le coordinate inserite dall'utente in coordinate numeriche poichè il computer non riesce a leggere le lettere quindi le converte in numeri
         {
             riga = -1; // valore di sicurezza per la riga, se non vengono trovate le coordinate corrette rimangono a -1
             colonna = -1; // valore di sicurezza per la colonna, se non vengono trovate le coordinate corrette rimangono a -1
-            char[] lettereMaiuscole = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L' }; // array di lettere maiuscole valide per la prima lettera della coordinata
-            char[] lettereMinuscole = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'l' }; // array di lettere minuscole valide per la prima lettera della coordinata
+            char[] lettereMaiusc = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L' }; // array di lettere maiuscole valide per la prima lettera della coordinata
+            char[] lettereMin = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'l' }; // array di lettere minuscole valide per la prima lettera della coordinata
 
-            for (int i = 0; i < lettereMaiuscole.Length; i++) // Scorre l'array delle lettere una alla volta, dall'inizio alla fine
+            for (int c = 0; c < lettereMaiusc.Length; c++) // Scorre l'array delle lettere una alla volta, dall'inizio alla fine
             {
                 
-                if (coordinate[0] == lettereMaiuscole[i] || coordinate[0] == lettereMinuscole[i]) // controlla se la prima lettera della coordinata inserita dall'utente è uguale a una delle lettere negli array delle maiuscole o delle minuscole
+                if (coordinate[0] == lettereMaiusc[c] || coordinate[0] == lettereMin[c]) // controlla se la prima lettera della coordinata inserita dall'utente è uguale a una delle lettere negli array delle maiuscole o delle minuscole
                 {
-                    riga = i; // Se la lettera coincide, assegna a riga l'indice dell'array
+                    riga = c; // Se la lettera coincide, assegna a riga l'indice dell'array
                 }
             }
 
             if (coordinate.Length == 2) // controlla se la coordinata è lunga 2 caratteri
             {
-                char[] numeri = { '1', '2', '3', '4', '5', '6', '7', '8', '9' }; // Array contenente i caratteri dei numeri da 1 a 9
-                for (int j = 0; j < numeri.Length; j++) // Scorre l'array dei numeri dal'inizio alla fine
+                char[] num= { '1', '2', '3', '4', '5', '6', '7', '8', '9' }; // Array contenente i caratteri dei numeri da 1 a 9
+                for (int i = 0; i < num.Length; i++) // Scorre l'array dei numeri dal'inizio alla fine
                 {
-                    if (coordinate[1] == numeri[j]) // controlla se il secondo carattere della coordinata equivale al numero dell'array
+                    if (coordinate[1] == num[i]) // controlla se il secondo carattere della coordinata equivale al numero dell'array
                     {
-                        colonna = j; // se il numero coincide, assegna a colonna l'indice dell'array
+                        colonna = i; // se il numero coincide, assegna a colonna l'indice dell'array
                     }
                 }
             }
@@ -211,27 +214,28 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
         }
 
-        private string GestisciColpo(int[,] griglia, int riga, int colonna) // funzione che controlla l'esito del colpo e aggiorna la matrice
-        {
-            // 1. Controlla se nella cella c'è acqua (0)
-            if (griglia[riga, colonna] == 0)
+        private string GestioneColpo(int[,] tabella, int riga, int colonna) // funzione che controlla il colpo e aggiorna la griglia in base all'esito
+        { 
+            //(0 = acqua , 1 = nave , 2 = acqua già colpita, 3 = nave già colpita)
+            
+            if (tabella[riga, colonna] == 0) // controlla se nella cella selezione c'è acqua quindi non c'è una nave(0)
             {
-                griglia[riga, colonna] = 2; // Imposta a 2 per indicare acqua colpita
-                return "ACQUA!"; // Restituisce il messaggio dell'esito
+                tabella[riga, colonna] = 2; // la cella viene impostata a 2 per indicare acqua già colpita
+                return "ACQUA"; // Viene restituito il messaggio dell'esito del colpo
             }
-            // 2. Controlla se nella cella c'è una nave (1)
-            else if (griglia[riga, colonna] == 1)
+            
+            else if (tabella[riga, colonna] == 1) // controlla se nella cella selezionata c'è una nave (1)
             {
-                griglia[riga, colonna] = 3; // Imposta a 3 per indicare nave colpita
-                return "COLPITO!"; // Restituisce il messaggio dell'esito
+                tabella[riga, colonna] = 3; // la cella viene impostata a 3 per indicare nave già colpita
+                return "COLPITO"; //Viene restituito il messaggio dell'esito del colpo
             }
-            // 3. Controlla se in quella posizione si è già sparato in precedenza (2 o 3)
-            else if (griglia[riga, colonna] == 2 || griglia[riga, colonna] == 3)
+            
+            else if (tabella[riga, colonna] == 2 || tabella[riga, colonna] == 3) // si viene controllato se in quelle posizioni si è già stato sparato in precedenza (2 o 3)
             {
-                return "Hai già sparato in questa posizione!"; // Avvisa l'utente senza modificare la griglia
+                return "HAI GIA SPARATO QUI IN QUESTA POSIZIONE"; // Avvisa l'utente senza modificare la griglia
             }
 
-            return "Errore"; // Ritorno di sicurezza
+            return "ERRORE"; // un ritorno per evitare errori 
         }
 
 
