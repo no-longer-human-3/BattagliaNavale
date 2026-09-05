@@ -31,7 +31,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         int[,] campoAvv = new int[righe, colonne];
         Nave[] miaFlotta = new Nave[navi];
 
-        bool eOrizzontale = true; // Variabile per salvare l'orientamento scelto dall'utente
+        bool orizzontale = true; // Variabile per salvare l'orientamento scelto dall'utente
 
 
         private void InizializzaFlotta() // Funzione per inizializzare la flotta
@@ -305,8 +305,8 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         }
         private void POSIZIONA_Click(object sender, EventArgs e)
         {
-            // 1. Controlla se è stata selezionata una nave dalla ListBox
-            if (Elenco.SelectedIndex == -1)
+            
+            if (Elenco.SelectedIndex == -1) //Controlla se è stata selezionata una nave, se non è stata selezionata alcuna nave selection index sarà -1, quindi verra mostrato un messaggio di errore
             {
                 MessageBox.Show("Seleziona prima una nave dalla lista!");
             }
@@ -314,44 +314,45 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             {
                 string coordinata = coordProprie.Text; // Prende il testo inserito dall'utente
 
-                // 2. Verifica se la coordinata è valida
-                if (VerificaCoord(coordinata) == true)
+                
+                if (VerificaCoord(coordinata) == true) // Se la coordinata è valida si procede con il posizionamento
                 {
-                    int riga, colonna;
-                    // 3. Converte la coordinata ("A1" -> numeri) con la tua funzione
-                    ConversioneCoord(coordinata, out riga, out colonna);
+                    int riga;
+                    int colonna;
+                    
+                    ConversioneCoord(coordinata, out riga, out colonna); // converte la coordinata in numeri
 
-                    // 4. Prepara la variabile Posizione
-                    Posizione inizio;
-                    inizio.Riga = riga;
-                    inizio.Colonna = colonna;
+                    
+                    Posizione inizio; // crea una variabile di tipo Posizione per memorizzare le coordinate iniziali
+                    inizio.Riga = riga; // assegna la riga convertita alla variabile inizio
+                    inizio.Colonna = colonna; // assegna la colonna convertita alla variabile inizio
 
-                    // 5. Tenta il posizionamento con la tua funzione PosNave
-                    if (PosNave(Elenco.SelectedIndex, inizio, eOrizzontale) == true)
+                    
+                    if (PosNave(Elenco.SelectedIndex, inizio, orizzontale) == true) // Se la funzione PosNave restituisce true, il posizionamento è avvenuto con successo
                     {
-                        MessageBox.Show("Nave posizionata con successo!");
+                        MessageBox.Show("la nave è stata posizionata con successo");
                         coordProprie.Text = ""; // Pulisce la casella di testo
                     }
                     else
                     {
-                        MessageBox.Show("Impossibile posizionare: la nave esce dal campo o si sovrappone!");
+                        MessageBox.Show("impossibile posizionare la nave poichè o è fuori dal campo o si sovrappone ad un'altra nave");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Coordinata non valida!");
+                    MessageBox.Show("La coordinata inserita non è valida");
                 }
             }
         }
         private void Orrizzontale_Click(object sender, EventArgs e)
         {
-            eOrizzontale = true; // Imposta l'orientamento a Orizzontale
+            orizzontale = true; // Imposta l'orientamento a Orizzontale
             MessageBox.Show("Orientamento impostato su: Orizzontale");
         }
 
         private void Verticale_Click(object sender, EventArgs e)
         {
-            eOrizzontale = false; // Imposta l'orientale a Verticale
+            orizzontale = false; // Imposta l'orientamento a Verticale
             MessageBox.Show("Orientamento impostato su: Verticale");
         }
 
