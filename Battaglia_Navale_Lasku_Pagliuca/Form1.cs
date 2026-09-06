@@ -356,7 +356,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
                 {
                     return miaFlotta[indiceNave].nome + " COLPITO!";
                 }
-                
+
             }
 
             else if (tabella[riga, colonna] == 8 || tabella[riga, colonna] == 9) // si viene controllato se in quelle posizioni si è già stato sparato in precedenza (8 o 9)
@@ -411,7 +411,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             }
         }
 
-        
+
         private void POSIZIONA_Click(object sender, EventArgs e)
         {
             if (Elenco.SelectedIndex == -1) //Controlla se è stata selezionata una nave, se non è stata selezionata alcuna nave selection index sarà -1, quindi verra mostrato un messaggio di errore
@@ -451,7 +451,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
                         coordProprie.Text = ""; // Pulisce la casella di testo
                         cronologia.Text += "Posizionata " + miaFlotta[indiceNave].nome + " in " + coordinata + "\r\n";
                         GraficaTabelle(); // Aggiorna la grafica delle tabelle
-                    
+
                     }
                     else
                     {
@@ -608,7 +608,13 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             GraficaTabelle();
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+
+        private void generaNavi_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void suggerimento_Click(object sender, EventArgs e)
         {
 
         }

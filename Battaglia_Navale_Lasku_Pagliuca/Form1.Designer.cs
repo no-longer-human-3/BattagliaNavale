@@ -52,6 +52,8 @@
             CampoAvversario = new Label();
             tabelloneAvv = new TextBox();
             tabellone = new TextBox();
+            generaNavi = new Button();
+            suggerimento = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             pannello_di_gioco.SuspendLayout();
             SuspendLayout();
@@ -66,7 +68,6 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 3;
             pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
             // 
             // pannello_di_gioco
             // 
@@ -294,7 +295,7 @@
             // tabelloneAvv
             // 
             tabelloneAvv.Font = new Font("Courier New", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            tabelloneAvv.Location = new Point(1005, 209);
+            tabelloneAvv.Location = new Point(1005, 203);
             tabelloneAvv.Multiline = true;
             tabelloneAvv.Name = "tabelloneAvv";
             tabelloneAvv.ReadOnly = true;
@@ -311,12 +312,38 @@
             tabellone.Size = new Size(505, 469);
             tabellone.TabIndex = 52;
             // 
+            // generaNavi
+            // 
+            generaNavi.Font = new Font("Bodoni MT Condensed", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            generaNavi.ForeColor = Color.Navy;
+            generaNavi.Location = new Point(24, 678);
+            generaNavi.Name = "generaNavi";
+            generaNavi.Size = new Size(505, 67);
+            generaNavi.TabIndex = 53;
+            generaNavi.Text = "GENERA NAVI";
+            generaNavi.UseVisualStyleBackColor = true;
+            generaNavi.Click += generaNavi_Click;
+            // 
+            // suggerimento
+            // 
+            suggerimento.Font = new Font("Bodoni MT Condensed", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            suggerimento.ForeColor = Color.Navy;
+            suggerimento.Location = new Point(1005, 678);
+            suggerimento.Name = "suggerimento";
+            suggerimento.Size = new Size(505, 67);
+            suggerimento.TabIndex = 54;
+            suggerimento.Text = "SUGGERIMENTO";
+            suggerimento.UseVisualStyleBackColor = true;
+            suggerimento.Click += suggerimento_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1531, 784);
+            Controls.Add(suggerimento);
+            Controls.Add(generaNavi);
             Controls.Add(tabellone);
             Controls.Add(tabelloneAvv);
             Controls.Add(CampoAvversario);
@@ -357,5 +384,7 @@
         private TextBox tabellone;
         private Button acqua;
         private Button colpito;
+        private Button generaNavi;
+        private Button suggerimento;
     }
 }
