@@ -51,32 +51,32 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
         private void GraficaTabelle()
         {
-            // Array per le lettere in intestazione
-            char[] lettere = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L' };
+            
+            char[] lettere = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L' }; //array che possiede le lettere nelle due tabelle
 
-            // --- 1. STAMPA CAMPO GIOCATORE ---
+           
             tabellone.Text = "     A   B   C   D   E   F   G   H   I   L\r\n";
-            tabellone.Text += "    ---+---+---+---+---+---+---+---+---+---\r\n";
+            tabellone.Text += "   +---+---+---+---+---+---+---+---+---+---+\r\n";
 
-            for (int r = 0; r < righe; r++)
+            for (int r = 0; r < righe; r++) 
             {
-                // Numero di riga a sinistra (allineato se a 1 cifra o 2 cifre)
-                if (r + 1 < 10)
+                
+                if (r + 1 < 10) 
                     tabellone.Text += " " + (r + 1) + " |";
                 else
                     tabellone.Text += (r + 1) + " |";
 
                 for (int c = 0; c < colonne; c++)
                 {
-                    if (mioCampo[r, c] == 0) tabellone.Text += "   |";      // Acqua
-                    else if (mioCampo[r, c] == 1) tabellone.Text += " N |"; // Nave
-                    else if (mioCampo[r, c] == 2) tabellone.Text += " O |"; // Acqua colpita
-                    else if (mioCampo[r, c] == 3) tabellone.Text += " X |"; // Nave colpita
+                    if (mioCampo[r, c] == 0) tabellone.Text += "   |";      
+                    else if (mioCampo[r, c] == 1) tabellone.Text += " N |"; 
+                    else if (mioCampo[r, c] == 2) tabellone.Text += " O |"; 
+                    else if (mioCampo[r, c] == 3) tabellone.Text += " X |"; 
                 }
-                tabellone.Text += "\r\n    ---+---+---+---+---+---+---+---+---+---\r\n";
+                tabellone.Text += "\r\n   +---+---+---+---+---+---+---+---+---+---+\r\n";
             }
 
-            // --- 2. STAMPA CAMPO AVVERSARIO ---
+            
             tabelloneAvv.Text = "     A   B   C   D   E   F   G   H   I   L\r\n";
             tabelloneAvv.Text += "   +---+---+---+---+---+---+---+---+---+---+\r\n";
 
@@ -89,9 +89,9 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
                 for (int c = 0; c < colonne; c++)
                 {
-                    if (campoAvv[r, c] == 0) tabelloneAvv.Text += "   |";      // Coperto / Acqua
-                    else if (campoAvv[r, c] == 2) tabelloneAvv.Text += " O |"; // Acqua colpita
-                    else if (campoAvv[r, c] == 3) tabelloneAvv.Text += " X |"; // Colpito
+                    if (campoAvv[r, c] == 0) tabelloneAvv.Text += "   |";      
+                    else if (campoAvv[r, c] == 2) tabelloneAvv.Text += " O |"; 
+                    else if (campoAvv[r, c] == 3) tabelloneAvv.Text += " X |"; 
                 }
                 tabelloneAvv.Text += "\r\n   +---+---+---+---+---+---+---+---+---+---+\r\n";
             }
