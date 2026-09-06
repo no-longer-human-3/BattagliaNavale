@@ -31,12 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             pictureBox2 = new PictureBox();
             pannello_di_gioco = new GroupBox();
+            colpito = new Button();
+            acqua = new Button();
             POSIZIONA = new Button();
             Verticale = new Button();
             Orrizzontale = new Button();
             label46 = new Label();
             label45 = new Label();
-            textBox1 = new TextBox();
+            posizione = new TextBox();
             label44 = new Label();
             Elenco = new ListBox();
             cronologia = new TextBox();
@@ -44,7 +46,6 @@
             verificaColpo = new Button();
             coordAvv = new MaskedTextBox();
             label2 = new Label();
-            spara = new Button();
             coordProprie = new MaskedTextBox();
             label1 = new Label();
             NostroCampo = new Label();
@@ -65,15 +66,18 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 3;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // pannello_di_gioco
             // 
+            pannello_di_gioco.Controls.Add(colpito);
+            pannello_di_gioco.Controls.Add(acqua);
             pannello_di_gioco.Controls.Add(POSIZIONA);
             pannello_di_gioco.Controls.Add(Verticale);
             pannello_di_gioco.Controls.Add(Orrizzontale);
             pannello_di_gioco.Controls.Add(label46);
             pannello_di_gioco.Controls.Add(label45);
-            pannello_di_gioco.Controls.Add(textBox1);
+            pannello_di_gioco.Controls.Add(posizione);
             pannello_di_gioco.Controls.Add(label44);
             pannello_di_gioco.Controls.Add(Elenco);
             pannello_di_gioco.Controls.Add(cronologia);
@@ -81,7 +85,6 @@
             pannello_di_gioco.Controls.Add(verificaColpo);
             pannello_di_gioco.Controls.Add(coordAvv);
             pannello_di_gioco.Controls.Add(label2);
-            pannello_di_gioco.Controls.Add(spara);
             pannello_di_gioco.Controls.Add(coordProprie);
             pannello_di_gioco.Controls.Add(label1);
             pannello_di_gioco.Location = new Point(564, 94);
@@ -90,6 +93,30 @@
             pannello_di_gioco.TabIndex = 5;
             pannello_di_gioco.TabStop = false;
             pannello_di_gioco.Text = "Pannello di Gioco";
+            // 
+            // colpito
+            // 
+            colpito.Font = new Font("Bodoni MT Condensed", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            colpito.ForeColor = Color.Navy;
+            colpito.Location = new Point(235, 89);
+            colpito.Name = "colpito";
+            colpito.Size = new Size(152, 55);
+            colpito.TabIndex = 53;
+            colpito.Text = "COLPITO";
+            colpito.UseVisualStyleBackColor = true;
+            colpito.Click += colpito_Click;
+            // 
+            // acqua
+            // 
+            acqua.Font = new Font("Bodoni MT Condensed", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            acqua.ForeColor = Color.Navy;
+            acqua.Location = new Point(27, 89);
+            acqua.Name = "acqua";
+            acqua.Size = new Size(152, 55);
+            acqua.TabIndex = 24;
+            acqua.Text = "ACQUA";
+            acqua.UseVisualStyleBackColor = true;
+            acqua.Click += acqua_Click;
             // 
             // POSIZIONA
             // 
@@ -149,14 +176,14 @@
             label45.TabIndex = 19;
             label45.Text = "--------------------------------------------------------------";
             // 
-            // textBox1
+            // posizione
             // 
-            textBox1.Location = new Point(191, 321);
-            textBox1.Margin = new Padding(2);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Inserisci la posizione (es. A1)";
-            textBox1.Size = new Size(209, 27);
-            textBox1.TabIndex = 18;
+            posizione.Location = new Point(191, 321);
+            posizione.Margin = new Padding(2);
+            posizione.Name = "posizione";
+            posizione.PlaceholderText = "Inserisci la posizione (es. A1)";
+            posizione.Size = new Size(209, 27);
+            posizione.TabIndex = 18;
             // 
             // label44
             // 
@@ -225,18 +252,6 @@
             label2.Size = new Size(397, 20);
             label2.TabIndex = 10;
             label2.Text = "Coordinata sparata dall'avversario---------------------------";
-            // 
-            // spara
-            // 
-            spara.Font = new Font("Bodoni MT Condensed", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            spara.ForeColor = Color.Navy;
-            spara.Location = new Point(112, 85);
-            spara.Name = "spara";
-            spara.Size = new Size(197, 59);
-            spara.TabIndex = 8;
-            spara.Text = "SPARA!";
-            spara.UseVisualStyleBackColor = true;
-            spara.Click += spara_Click;
             // 
             // coordProprie
             // 
@@ -326,12 +341,11 @@
         private Label label1;
         private MaskedTextBox coordProprie;
         private Label label2;
-        private Button spara;
         private TextBox cronologia;
         private Label label3;
         private Button verificaColpo;
         private MaskedTextBox coordAvv;
-        private TextBox textBox1;
+        private TextBox posizione;
         private ListBox Elenco;
         private Label label44;
         private Button Verticale;
@@ -341,5 +355,7 @@
         private Button POSIZIONA;
         private TextBox tabelloneAvv;
         private TextBox tabellone;
+        private Button acqua;
+        private Button colpito;
     }
 }
