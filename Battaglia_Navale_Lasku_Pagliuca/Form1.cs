@@ -1,5 +1,4 @@
-using Microsoft.VisualBasic;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace Battaglia_Navale_Lasku_Pagliuca
 {
@@ -380,7 +379,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             }
         }
 
-
+        bool[] naviPosizionate = new bool[navi];
         private void POSIZIONA_Click(object sender, EventArgs e)
         {
             if (Elenco.SelectedIndex == -1) //Controlla se è stata selezionata una nave, se non è stata selezionata alcuna nave selection index sarà -1, quindi verra mostrato un messaggio di errore
@@ -389,6 +388,14 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             }
             else
             {
+                int indiceNave = Elenco.SelectedIndex;
+
+                // CONTROLLO: Se la nave è già stata messa, blocca l'operazione
+                if (naviPosizionate[indiceNave] == true)
+                {
+                    MessageBox.Show("Hai già posizionato questa nave!");
+                    return;
+                }
                 string coordinata = posizione.Text; // Prende il testo inserito dall'utente
 
 
@@ -407,6 +414,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
                     if (PosNave(Elenco.SelectedIndex, inizio, orizzontale) == true) // Se la funzione PosNave restituisce true, il posizionamento è avvenuto con successo
                     {
+                        naviPosizionate[indiceNave] = true;
                         MessageBox.Show("la nave è stata posizionata con successo");
                         coordProprie.Text = ""; // Pulisce la casella di testo
                         GraficaTabelle(); // Aggiorna la grafica delle tabelle
