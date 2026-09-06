@@ -212,9 +212,9 @@
             cronologia.Location = new Point(9, 512);
             cronologia.Multiline = true;
             cronologia.Name = "cronologia";
+            cronologia.PlaceholderText = "Cronologia";
             cronologia.Size = new Size(391, 155);
             cronologia.TabIndex = 14;
-            cronologia.Text = "Cronologia";
             // 
             // label3
             // 

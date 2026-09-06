@@ -43,7 +43,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         Nave[] miaFlotta = new Nave[navi];
 
         bool orizzontale = true; // Variabile per salvare l'orientamento scelto dall'utente
-
+        bool[] naviPosizionate = new bool[navi]; // Mantiene traccia di quali navi sono già sulla griglia
 
 
 
@@ -178,9 +178,22 @@ namespace Battaglia_Navale_Lasku_Pagliuca
                         r = inizio.Riga + i; // Sposta la riga in avanti di i caselle
                     }
 
-                    if (mioCampo[r, c] != 0) // Controlla se nella matrice la casella è già occupata (diverso da 0)
+                    for (int spostamentoRiga = -1; spostamentoRiga <= 1; spostamentoRiga++)
                     {
-                        esito = false; // Trovata casella occupata: imposta esito a false
+                        for (int spostamentoColonna = -1; spostamentoColonna <= 1; spostamentoColonna++)
+                        {
+                            int nr = r + spostamentoRiga;
+                            int nc = c + spostamentoColonna;
+
+                            // Verifica che la casella vicina sia all'interno del tabellone
+                            if (nr >= 0 && nr < righe && nc >= 0 && nc < colonne)
+                            {
+                                if (mioCampo[nr, nc] != 0) // Se la casella o una delle caselle vicine è occupata
+                                {
+                                    esito = false; // Trovata nave vicina o sovrapposta: non valida!
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -323,8 +336,27 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
             else if (tabella[riga, colonna] >= 1 && tabella[riga, colonna] <= 5) // controlla se nella cella selezionata c'è una nave (1)
             {
+                int indiceNave = tabella[riga, colonna] - 1; // Calcola l'indice della nave colpita sottraendo 1 dal valore della cella (1-5)
                 tabella[riga, colonna] = 9; // la cella viene impostata a 9 per indicare nave già colpita
-                return "COLPITO"; //Viene restituito il messaggio dell'esito del colpo
+                for (int j = 0; j < miaFlotta[indiceNave].dim; j++)
+                {
+                    if (miaFlotta[indiceNave].Coord[j].Riga == riga && miaFlotta[indiceNave].Coord[j].Colonna == colonna)
+                    {
+                        miaFlotta[indiceNave].colpiSubiti[j] = true;
+                        break;
+                    }
+                }
+
+                // Verifica se l'ultimo segmento colpito ha fatto affondare la nave
+                if (ControllaAffondato(indiceNave))
+                {
+                    return miaFlotta[indiceNave].nome + " COLPITO E AFFONDATO!";
+                }
+                else
+                {
+                    return miaFlotta[indiceNave].nome + " COLPITO!";
+                }
+                
             }
 
             else if (tabella[riga, colonna] == 8 || tabella[riga, colonna] == 9) // si viene controllato se in quelle posizioni si è già stato sparato in precedenza (8 o 9)
@@ -379,7 +411,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             }
         }
 
-        bool[] naviPosizionate = new bool[navi];
+        
         private void POSIZIONA_Click(object sender, EventArgs e)
         {
             if (Elenco.SelectedIndex == -1) //Controlla se è stata selezionata una nave, se non è stata selezionata alcuna nave selection index sarà -1, quindi verra mostrato un messaggio di errore
@@ -417,7 +449,9 @@ namespace Battaglia_Navale_Lasku_Pagliuca
                         naviPosizionate[indiceNave] = true;
                         MessageBox.Show("la nave è stata posizionata con successo");
                         coordProprie.Text = ""; // Pulisce la casella di testo
+                        cronologia.Text += "Posizionata " + miaFlotta[indiceNave].nome + " in " + coordinata + "\r\n";
                         GraficaTabelle(); // Aggiorna la grafica delle tabelle
+                    
                     }
                     else
                     {
@@ -472,8 +506,19 @@ namespace Battaglia_Navale_Lasku_Pagliuca
                     RegistraColpoNave(riga, colonna); // Aggiorna la struct della nave e controlla l'affondamento
                 }
 
+
+
                 MessageBox.Show("Risposta dall'avversario: " + risultato); // Mostra il risultato del colpo all'utente
                 coordAvv.Text = ""; // Pulisce la casella di testo dopo il colpo
+
+                if (risultato == "COLPITO")
+                {
+                    cronologia.Text += "Avversario spara su " + coordinata + ": COLPITO!\r\n";
+                }
+                else if (risultato == "ACQUA")
+                {
+                    cronologia.Text += "Avversario spara su " + coordinata + ": ACQUA\r\n";
+                }
                 GraficaTabelle();
 
             }
@@ -502,6 +547,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
                 campoAvv[riga, colonna] = 8; // 8 = Acqua ('O')
                 coordProprie.Text = "";
+                cronologia.Text += "Mio attacco su " + coordinata + ": ACQUA\r\n";
                 GraficaTabelle();
             }
             else
@@ -528,6 +574,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
                 campoAvv[riga, colonna] = 9; // 9 = Colpito ('X')
                 coordProprie.Text = "";
+                cronologia.Text += "Mio attacco su " + coordinata + ": COLPITO!\r\n";
                 GraficaTabelle();
             }
             else
