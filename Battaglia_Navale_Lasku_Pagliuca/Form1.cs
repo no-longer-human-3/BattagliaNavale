@@ -1,5 +1,3 @@
-
-
 namespace Battaglia_Navale_Lasku_Pagliuca
 {
 
