@@ -17,6 +17,17 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         public bool affondo;
 
     }
+
+
+
+
+
+
+
+
+
+
+
     public partial class Form1 : Form
     {
         public Form1()
@@ -32,6 +43,66 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         Nave[] miaFlotta = new Nave[navi];
 
         bool orizzontale = true; // Variabile per salvare l'orientamento scelto dall'utente
+
+
+
+
+
+
+        private void GraficaTabelle()
+        {
+            // Array per le lettere in intestazione
+            char[] lettere = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L' };
+
+            // --- 1. STAMPA CAMPO GIOCATORE ---
+            tabellone.Text = "     A   B   C   D   E   F   G   H   I   L\r\n";
+            tabellone.Text += "    ---+---+---+---+---+---+---+---+---+---\r\n";
+
+            for (int r = 0; r < righe; r++)
+            {
+                // Numero di riga a sinistra (allineato se a 1 cifra o 2 cifre)
+                if (r + 1 < 10)
+                    tabellone.Text += " " + (r + 1) + " |";
+                else
+                    tabellone.Text += (r + 1) + " |";
+
+                for (int c = 0; c < colonne; c++)
+                {
+                    if (mioCampo[r, c] == 0) tabellone.Text += "   |";      // Acqua
+                    else if (mioCampo[r, c] == 1) tabellone.Text += " N |"; // Nave
+                    else if (mioCampo[r, c] == 2) tabellone.Text += " O |"; // Acqua colpita
+                    else if (mioCampo[r, c] == 3) tabellone.Text += " X |"; // Nave colpita
+                }
+                tabellone.Text += "\r\n    ---+---+---+---+---+---+---+---+---+---\r\n";
+            }
+
+            // --- 2. STAMPA CAMPO AVVERSARIO ---
+            tabelloneAvv.Text = "     A   B   C   D   E   F   G   H   I   L\r\n";
+            tabelloneAvv.Text += "   +---+---+---+---+---+---+---+---+---+---+\r\n";
+
+            for (int r = 0; r < righe; r++)
+            {
+                if (r + 1 < 10)
+                    tabelloneAvv.Text += " " + (r + 1) + " |";
+                else
+                    tabelloneAvv.Text += (r + 1) + " |";
+
+                for (int c = 0; c < colonne; c++)
+                {
+                    if (campoAvv[r, c] == 0) tabelloneAvv.Text += "   |";      // Coperto / Acqua
+                    else if (campoAvv[r, c] == 2) tabelloneAvv.Text += " O |"; // Acqua colpita
+                    else if (campoAvv[r, c] == 3) tabelloneAvv.Text += " X |"; // Colpito
+                }
+                tabelloneAvv.Text += "\r\n   +---+---+---+---+---+---+---+---+---+---+\r\n";
+            }
+        }
+
+
+
+
+
+
+
 
 
         private void InizializzaFlotta() // Funzione per inizializzare la flotta
@@ -71,6 +142,9 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             miaFlotta[4].colpiSubiti = new bool[2];
             miaFlotta[4].affondo = false;
         }
+
+
+
         private bool PosNave(int indiceNave, Posizione inizio, bool orizzontale) // Definizione funzione (ritorna true se posizionata)
         {
             bool esito = true; // Variabile di supporto: parte ipotizzando che la posizione sia valida
@@ -260,27 +334,43 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         private void Elenco_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Elenco.Items.Clear();
-            Elenco.Items.Add("Portaerei (5)");
-            Elenco.Items.Add("Corazzata (4)");
-            Elenco.Items.Add("Incrociatore 1 (3)");
-            Elenco.Items.Add("Incrociatore 2 (3)");
-            Elenco.Items.Add("Cacciatorpediniere (2)");
+
         }
 
         private void spara_Click(object sender, EventArgs e)
         {
             string coordinata = coordProprie.Text; // Prende la coordinata inserita dall'utente
-            if (VerificaCoord(coordinata) == true) 
+            if (VerificaCoord(coordinata) == true)
             {
                 int riga, colonna; // Variabili per memorizzare le coordinate convertite
                 ConversioneCoord(coordinata, out riga, out colonna); // Converte la coordinata in numeri
                 string risultato = GestioneColpo(campoAvv, riga, colonna); // Controlla il colpo e aggiorna la griglia
                 MessageBox.Show("Risultato del colpo: " + risultato); // Mostra il risultato del colpo all'utente
                 coordProprie.Text = ""; // Pulisce la casella di testo dopo il colpo
-            } else 
+            }
+            else
             {
                 MessageBox.Show("Coordinata non valida,inserisci una coordinata corretta."); // Avvisa l'utente che la coordinata inserita non è valida
             }
@@ -305,7 +395,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         }
         private void POSIZIONA_Click(object sender, EventArgs e)
         {
-            
+
             if (Elenco.SelectedIndex == -1) //Controlla se è stata selezionata una nave, se non è stata selezionata alcuna nave selection index sarà -1, quindi verra mostrato un messaggio di errore
             {
                 MessageBox.Show("Seleziona prima una nave dalla lista!");
@@ -314,20 +404,20 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             {
                 string coordinata = coordProprie.Text; // Prende il testo inserito dall'utente
 
-                
+
                 if (VerificaCoord(coordinata) == true) // Se la coordinata è valida si procede con il posizionamento
                 {
                     int riga;
                     int colonna;
-                    
+
                     ConversioneCoord(coordinata, out riga, out colonna); // converte la coordinata in numeri
 
-                    
+
                     Posizione inizio; // crea una variabile di tipo Posizione per memorizzare le coordinate iniziali
                     inizio.Riga = riga; // assegna la riga convertita alla variabile inizio
                     inizio.Colonna = colonna; // assegna la colonna convertita alla variabile inizio
 
-                    
+
                     if (PosNave(Elenco.SelectedIndex, inizio, orizzontale) == true) // Se la funzione PosNave restituisce true, il posizionamento è avvenuto con successo
                     {
                         MessageBox.Show("la nave è stata posizionata con successo");
@@ -359,6 +449,17 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         private void Form1_Load(object sender, EventArgs e)
         {
             InizializzaFlotta(); // prepara le navi all'avvio
+
+            Elenco.Items.Clear();
+            Elenco.Items.Add("Portaerei (5)");
+            Elenco.Items.Add("Corazzata (4)");
+            Elenco.Items.Add("Incrociatore 1 (3)");
+            Elenco.Items.Add("Incrociatore 2 (3)");
+            Elenco.Items.Add("Cacciatorpediniere (2)");
+
+            GraficaTabelle();
         }
+
+        
     }
 }
