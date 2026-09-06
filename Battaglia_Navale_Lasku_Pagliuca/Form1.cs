@@ -342,12 +342,15 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
         private string GestioneColpo(int[,] tabella, int riga, int colonna) // funzione che controlla il colpo e aggiorna la griglia in base all'esito
         {
-            //(0 = acqua , 1 = nave , 8 = acqua già colpita, 9 = nave già colpita)
+            // 0 = acqua 
+            // 1 = nave 
+            // 8 = acqua già colpita
+            // 9 = nave già colpita
 
             if (tabella[riga, colonna] == 0) // controlla se nella cella selezione c'è acqua quindi non c'è una nave(0)
             {
                 tabella[riga, colonna] = 8; // la cella viene impostata a 8 per indicare acqua già colpita
-                return "ACQUA"; // Viene restituito il messaggio dell'esito del colpo
+                return "ACQUA"; // viene restituito il messaggio dell'esito del colpo
             }
 
             else if (tabella[riga, colonna] >= 1 && tabella[riga, colonna] <= 5) // controlla se nella cella selezionata c'è una nave (1)
@@ -360,7 +363,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
                     if (miaFlotta[indiceNave].Coord[i].Riga == riga && miaFlotta[indiceNave].Coord[i].Colonna == colonna) // Controlla se le coordinate del segmento corrispondono a quelle del colpo
                     {
                         miaFlotta[indiceNave].colpiSubiti[i] = true;// Segna il segmento come colpito
-                        break; // Esce dal ciclo una volta trovato il segmento colpito
+                        break; // esce dal ciclo una volta trovato il segmento colpito
                     }
                 }
 
@@ -377,38 +380,73 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
             else if (tabella[riga, colonna] == 8 || tabella[riga, colonna] == 9) // si viene controllato se in quelle posizioni si è già stato sparato in precedenza (8 o 9)
             {
-                return "hai già sparato in questa posizione"; // Avvisa l'utente senza modificare la griglia
+                return "hai già sparato in questa posizione"; // avvisa l'utente senza modificare la griglia
             }
 
             return "ERRORE"; // un ritorno per evitare errori 
         }
 
+        private void Vittoria()
+        {
+            int caselleColpAvv = 0; // variabile per contare le caselle colpite dell'avversario
 
+            for (int r = 0; r < righe; r++) 
+            {
+                for (int c = 0; c < colonne; c++) 
+                {
+                    if (campoAvv[r, c] == 9) // controlla se la casella è stata colpita (9)
+                    {
+                        caselleColpAvv++; //incrementa il contatore delle caselle colpite dell'avversario
+                    }
+                }
+            }
+
+            
+            if (caselleColpAvv == 17) // controlla se tutte le caselle delle navi dell'avversario sono state colpite (17 caselle in totale)
+            {
+                MessageBox.Show("LE NAVI SONO STATE AFFONDATE, HAI VINTO");
+            }
+
+            int naviAffondate = 0; // Variabile per contare le navi affondate del giocatore
+            int navi = 5; // Numero totale di navi del giocatore
+            for (int i = 0; i < navi; i++) // Ciclo per scorrere tutte le navi del giocatore
+            {
+                if (miaFlotta[i].affondo == true) // Controlla se la nave è affondata
+                {
+                    naviAffondate++; // incrementa il contatore delle navi affondate del giocatore
+                }
+            }
+
+            if (naviAffondate == navi) // controlla se tutte le navi del giocatore sono affondate (5 navi in totale)
+            {
+                MessageBox.Show("TUTTE LE TUE NAVI SONO STATE AFFONDATE, HAI PERSO"); 
+            }
+        }
 
 
 
         private void POSIZIONA_Click(object sender, EventArgs e)
         {
-            if (Elenco.SelectedIndex == -1) //Controlla se è stata selezionata una nave, se non è stata selezionata alcuna nave selection index sarà -1, quindi verra mostrato un messaggio di errore
+            if (Elenco.SelectedIndex == -1) //controlla se è stata selezionata una nave, se non è stata selezionata alcuna nave selection index sarà -1, quindi verra mostrato un messaggio di errore
             {
                 MessageBox.Show("seleziona una nave dalla lista");
             }
             else
             {
-                int indiceNave = Elenco.SelectedIndex; // Recupera l'indice della nave selezionata dall'elenco
+                int indiceNave = Elenco.SelectedIndex; // recupera l'indice della nave selezionata dall'elenco
 
-                if (naviPosizionate[indiceNave] == true) // Controlla se la nave selezionata è già stata posizionata, se è già stata posizionata mostra un messaggio di errore
+                if (naviPosizionate[indiceNave] == true) // controlla se la nave selezionata è già stata posizionata, se è già stata posizionata mostra un messaggio di errore
                 {
                     MessageBox.Show("questa nave è già stata posizionata");
                     return;
                 }
 
-                string coordinata = posizione.Text; // Prende il testo inserito dall'utente
+                string coordinata = posizione.Text; // prende il testo inserito dall'utente
 
-                if (VerificaCoord(coordinata) == true) // Se la coordinata è valida si procede con il posizionamento
+                if (VerificaCoord(coordinata) == true) // se la coordinata è valida si procede con il posizionamento
                 {
-                    int riga; // Variabile per memorizzare la riga convertita
-                    int colonna; // Variabile per memorizzare la colonna convertita
+                    int riga; 
+                    int colonna; 
                     ConversioneCoord(coordinata, out riga, out colonna); // converte la coordinata in numeri
 
                     Posizione inizio; // crea una variabile di tipo Posizione per memorizzare le coordinate iniziali
@@ -440,7 +478,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
 
 
-        private void RegistraColpoNave(int riga, int colonna) // Funzione per registrare il colpo subito da una nave e controllare se è affondata
+        private void RegistraColpoNave(int riga, int colonna) // funzione per registrare il colpo subito da una nave e controllare se è affondata
         {
             
             for (int i = 0; i < navi; i++) // Ciclo per scorrere tutte le navi della flotta
@@ -488,11 +526,11 @@ namespace Battaglia_Navale_Lasku_Pagliuca
                 MessageBox.Show(risultato); // Mostra il risultato del colpo all'utente
                 coordAvv.Text = ""; // Pulisce la casella di testo dopo il colpo
 
-                if (risultato == "colpito") // Se il risultato del colpo è "COLPITO", aggiorna la cronologia con il messaggio corrispondente
+                if (risultato == "colpito" || risultato == "COLPITO" || risultato == "Colpito") // Se il risultato del colpo è "COLPITO", aggiorna la cronologia con il messaggio corrispondente
                 {
                     cronologia.Text = cronologia.Text + "L'Avversario spara su " + coordinata + ": COLPITO\r\n";
                 }
-                else if (risultato == "acqua")
+                else if (risultato == "acqua" || risultato == "ACQUA" || risultato == "Acqua")
                 {
                     cronologia.Text = cronologia.Text + "L'Avversario spara su " + coordinata + ": ACQUA\r\n";
                 }
@@ -504,6 +542,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
                 MessageBox.Show("la coordinata dell'avversario non è valida"); // Avvisa l'utente che la coordinata inserita non è valida
             }
 
+            Vittoria(); // Controlla se c'è una vittoria o una sconfitta dopo il colpo dell'avversario
         }
 
 
@@ -529,6 +568,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
                 coordProprie.Text = "";
                 cronologia.Text = cronologia.Text+ "il mio attacco su " + coordinata + ": ACQUA\r\n"; // Aggiorna la cronologia con il messaggio corrispondente
                 GraficaTabelle();
+                Vittoria(); // Controlla se c'è una vittoria o una sconfitta dopo il colpo subito
             }
             else
             {
@@ -558,11 +598,14 @@ namespace Battaglia_Navale_Lasku_Pagliuca
                 coordProprie.Text = "";
                 cronologia.Text = cronologia.Text + "il mio attacco su " + coordinata + ": COLPITO\r\n"; // Aggiorna la cronologia con il messaggio corrispondente
                 GraficaTabelle(); // Aggiorna la grafica delle tabelle dopo il colpo
+                Vittoria(); // Controlla se c'è una vittoria o una sconfitta dopo il colpo subito
             }
             else
             {
                 MessageBox.Show("la coordinata non è valida"); 
             }
+           
+
         }
 
 
@@ -612,10 +655,10 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             for (int i = 0; i < navi; i++) // Ciclo per impostare tutte le navi come non posizionate
             {
                 naviPosizionate[i] = false; // Imposta lo stato di posizionamento della nave a false (non posizionata)
-                miaFlotta[i].affondo = false;
-                for (int k = 0; k < miaFlotta[i].dim; k++)
+                miaFlotta[i].affondo = false; // Imposta lo stato di affondamento della nave a false (non affondata)
+                for (int k = 0; k < miaFlotta[i].dim; k++) // Ciclo per impostare tutti i segmenti della nave come non colpiti
                 {
-                    miaFlotta[i].colpiSubiti[k] = false;
+                    miaFlotta[i].colpiSubiti[k] = false; // Imposta lo stato di colpo del segmento della nave a false (non colpito)
                 }
             }
 
@@ -692,16 +735,16 @@ namespace Battaglia_Navale_Lasku_Pagliuca
                 }
             }
 
-            int rigaCasuale; // Variabile per memorizzare la riga casuale generata
-            int colonnaCasuale; // Variabile per memorizzare la colonna casuale generata
+            int rigaCasuale; 
+            int colonnaCasuale; 
             do
             {
-                rigaCasuale = rnd.Next(0, 10); // Genera un numero casuale per la riga (da 0 a 9)
-                colonnaCasuale = rnd.Next(0, 10); // Genera un numero casuale per la colonna (da 0 a 9) 
+                rigaCasuale = rnd.Next(0, 10); // genera un numero casuale per la riga (da 0 a 9)
+                colonnaCasuale = rnd.Next(0, 10); // genera un numero casuale per la colonna (da 0 a 9) 
             }
-            while (campoAvv[rigaCasuale, colonnaCasuale] != 0); // Continua a generare nuove coordinate casuali finché non trova una casella disponibile (0)
+            while (campoAvv[rigaCasuale, colonnaCasuale] != 0); // continua a generare nuove coordinate casuali finché non trova una casella disponibile (0)
 
-            coordProprie.Text = ConvertiInStringaCoord(rigaCasuale, colonnaCasuale); // Converte le coordinate casuali in stringa e le assegna alla casella di testo per il suggerimento
+            coordProprie.Text = ConvertiInStringaCoord(rigaCasuale, colonnaCasuale); // converte le coordinate casuali in stringa e le assegna alla casella di testo per il suggerimento
         }
 
     }
