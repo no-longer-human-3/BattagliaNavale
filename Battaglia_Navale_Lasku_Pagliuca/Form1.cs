@@ -612,15 +612,19 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             for (int i = 0; i < navi; i++) // Ciclo per impostare tutte le navi come non posizionate
             {
                 naviPosizionate[i] = false; // Imposta lo stato di posizionamento della nave a false (non posizionata)
+                miaFlotta[i].affondo = false;
+                for (int k = 0; k < miaFlotta[i].dim; k++)
+                {
+                    miaFlotta[i].colpiSubiti[k] = false;
+                }
             }
 
             for (int i = 0; i < navi; i++) // Ciclo per posizionare automaticamente ciascuna nave
             {
                 bool posizionamento = false; // Variabile di supporto per indicare se la nave è stata posizionata correttamente
 
-                while (posizionamento == true) // Ciclo finché la nave non viene posizionata correttamente
+                while (posizionamento == false) // Ciclo finché la nave non viene posizionata correttamente
                 {
-                   
                     int r = rnd.Next(0, righe); // Genera un numero casuale per la riga (da 0 a righe-1)
                     int c = rnd.Next(0, colonne); // Genera un numero casuale per la colonna (da 0 a colonne-1)
                     bool orizzontale = rnd.Next(0, 2) == 0; // Genera un valore casuale per l'orientamento della nave (true = orizzontale, false = verticale)
