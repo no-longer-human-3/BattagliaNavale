@@ -123,14 +123,14 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             miaFlotta[1].affondo = false;
 
             
-            miaFlotta[2].nome = "Incrociatore 1"; // Dichiarazione Incrociatore 1
+            miaFlotta[2].nome = "Incrociatore_1"; // Dichiarazione Incrociatore 1
             miaFlotta[2].dim = 3;
             miaFlotta[2].Coord = new Posizione[3];
             miaFlotta[2].colpiSubiti = new bool[3];
             miaFlotta[2].affondo = false;
 
             
-            miaFlotta[3].nome = "Incrociatore 2"; // Dichiarazione Incrociatore 2
+            miaFlotta[3].nome = "Incrociatore_2"; // Dichiarazione Incrociatore 2
             miaFlotta[3].dim = 3;
             miaFlotta[3].Coord = new Posizione[3];
             miaFlotta[3].colpiSubiti = new bool[3];
