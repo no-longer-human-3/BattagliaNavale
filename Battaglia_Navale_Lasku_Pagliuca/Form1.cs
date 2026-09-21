@@ -49,53 +49,54 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         bool[] naviPosizionate = new bool[navi]; // Mantiene traccia di quali navi sono già sulla griglia
         Random rnd = new Random(); // Oggetto Random per generare numeri casuali per il posizionamento automatico delle navi
 
+        string FilePath = @"C: \Users\invuz\desktop\File.txt"; 
 
         private void GraficaTabelle() // Funzione per aggiornare la grafica delle tabelle di gioco
         {
-            char[] lettere = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L' }; // Array di lettere per le intestazioni delle colonne
-            tabellone.Text = "     A   B   C   D   E   F   G   H   I   L\r\n"; // Intestazione delle colonne per il tabellone del giocatore
+            int[] num = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }; // Array di numeri per le intestazioni delle colonne
+            tabellone.Text = "     1   2   3   4   5   6   7   8   9   10\r\n"; // Intestazione delle colonne per il tabellone del giocatore
             tabellone.Text += "   +---+---+---+---+---+---+---+---+---+---+\r\n"; // Riga di separazione iniziale
 
-
+            char[] lettere = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' }; // Array di lettere per le intestazioni delle righe
 
             for (int r = 0; r < righe; r++) // Ciclo per ogni riga della griglia
             {
                 if (r + 1 < 10) // Aggiunge uno spazio per l'allineamento se il numero della riga è minore di 10
-                    tabellone.Text += " " + (r + 1) + " |";
+                    tabellone.Text += " " + lettere[r] + " |";
                 else
-                    tabellone.Text += (r + 1) + " |";
+                    tabellone.Text += " " + lettere[r] + " |";
 
                 for (int c = 0; c < colonne; c++) // Ciclo per ogni colonna della griglia
                 {
-                    if (mioCampo[r, c] == 0) tabellone.Text += "   |"; // TABELLA ALL'INIZIO: Casella vuota (0)
-                    else if (mioCampo[r, c] == 1) tabellone.Text += " P |"; // Portaerei
-                    else if (mioCampo[r, c] == 2) tabellone.Text += " C |"; // Corazzata
-                    else if (mioCampo[r, c] == 3) tabellone.Text += "I1 |"; // Incrociatore 1
-                    else if (mioCampo[r, c] == 4) tabellone.Text += "I2 |"; // Incrociatore 2
-                    else if (mioCampo[r, c] == 5) tabellone.Text += "CP |"; // Cacciatorpediniere
-                    else if (mioCampo[r, c] == 8) tabellone.Text += " O |"; // Acqua colpita
-                    else if (mioCampo[r, c] == 9) tabellone.Text += " X |"; // Nave colpita
+                    if (mioCampo[c, r] == 0) tabellone.Text += "   |"; // TABELLA ALL'INIZIO: Casella vuota (0)
+                    else if (mioCampo[c, r] == 1) tabellone.Text += " P |"; // Portaerei
+                    else if (mioCampo[c, r] == 2) tabellone.Text += " C |"; // Corazzata
+                    else if (mioCampo[c, r] == 3) tabellone.Text += "I1 |"; // Incrociatore 1
+                    else if (mioCampo[c, r] == 4) tabellone.Text += "I2 |"; // Incrociatore 2
+                    else if (mioCampo[c, r] == 5) tabellone.Text += "CP |"; // Cacciatorpediniere
+                    else if (mioCampo[c, r] == 8) tabellone.Text += " O |"; // Acqua colpita
+                    else if (mioCampo[c, r] == 9) tabellone.Text += " X |"; // Nave colpita
                 }
                 tabellone.Text += "\r\n   +---+---+---+---+---+---+---+---+---+---+\r\n"; // Riga di separazione tra le righe della griglia
             }
 
             
 
-            tabelloneAvv.Text = "     A   B   C   D   E   F   G   H   I   L\r\n"; // Intestazione delle colonne per il tabellone dell'avversario
+            tabelloneAvv.Text = "     1   2   3   4   5   6   7   8   9   10\r\n"; // Intestazione delle colonne per il tabellone dell'avversario
             tabelloneAvv.Text += "   +---+---+---+---+---+---+---+---+---+---+\r\n"; // Riga di separazione iniziale
 
             for (int r = 0; r < righe; r++) // Ciclo per ogni riga della griglia dell'avversario
             {
                 if (r + 1 < 10) // Aggiunge uno spazio per l'allineamento se il numero della riga è minore di 10
-                    tabelloneAvv.Text += " " + (r + 1) + " |";
+                    tabelloneAvv.Text += " " + lettere[r] + " |";
                 else
-                    tabelloneAvv.Text += (r + 1) + " |";
+                    tabelloneAvv.Text += " " + lettere[r] + " |";
 
                 for (int c = 0; c < colonne; c++) // Ciclo per ogni colonna della griglia dell'avversario
                 {
-                    if (campoAvv[r, c] == 0) tabelloneAvv.Text += "   |"; // TABELLA ALL'INIZIO: Casella vuota(0)
-                    else if (campoAvv[r, c] == 8) tabelloneAvv.Text += " O |"; // Acqua
-                    else if (campoAvv[r, c] == 9) tabelloneAvv.Text += " X |"; // Colpito
+                    if (campoAvv[c, r] == 0) tabelloneAvv.Text += "   |"; // TABELLA ALL'INIZIO: Casella vuota(0)
+                    else if (campoAvv[c, r] == 8) tabelloneAvv.Text += " O |"; // Acqua
+                    else if (campoAvv[c, r] == 9) tabelloneAvv.Text += " X |"; // Colpito
                 }
                 tabelloneAvv.Text += "\r\n   +---+---+---+---+---+---+---+---+---+---+\r\n"; // Riga di separazione tra le righe della griglia dell'avversario
             }
@@ -256,7 +257,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
             {
                 return false; // se la coordinata è più corta di 2 o più lunga di 3 esce subito dalla funzione e restituisce il valore false
             }
-            char[] charValide = { 'A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'L', 'l' };// array di caratteri validi per la prima lettera della coordinata
+            char[] charValide = { 'A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'J', 'j' };// array di caratteri validi per la prima lettera della coordinata
             bool charValida = false; // variabile booleana per verificare se la prima lettera della coordinata è valida
 
 
@@ -304,8 +305,8 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         {
             riga = -1; // valore di sicurezza per la riga, se non vengono trovate le coordinate corrette rimangono a -1
             colonna = -1; // valore di sicurezza per la colonna, se non vengono trovate le coordinate corrette rimangono a -1
-            char[] lettereMaiusc = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L' }; // array di lettere maiuscole valide per la prima lettera della coordinata
-            char[] lettereMin = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'l' }; // array di lettere minuscole valide per la prima lettera della coordinata
+            char[] lettereMaiusc = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' }; // array di lettere maiuscole valide per la prima lettera della coordinata
+            char[] lettereMin = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' }; // array di lettere minuscole valide per la prima lettera della coordinata
 
             for (int c = 0; c < lettereMaiusc.Length; c++) // Scorre l'array delle lettere una alla volta, dall'inizio alla fine
             {
@@ -678,7 +679,22 @@ namespace Battaglia_Navale_Lasku_Pagliuca
                         posizionamento = true; // Imposta la variabile di supporto a true per uscire dal ciclo while
                     }
                 }
+
+                using (StreamWriter writer = new StreamWriter("File.txt", true)) // Apre il file "File.txt" in modalità append per scrivere le posizioni delle navi
+                {
+                    writer.WriteLine("Nave: " + miaFlotta[i].nome); // Scrive il nome della nave nel file
+                    for (int j = 0; j < miaFlotta[i].dim; j++) // Ciclo per scrivere le coordinate di ciascun segmento della nave
+                    {
+                        writer.WriteLine("Segmento " + (j + 1) + ": " + ConvertiInStringaCoord(miaFlotta[i].Coord[j].Riga, miaFlotta[i].Coord[j].Colonna)); // Scrive le coordinate del segmento nel file
+                    }
+                    writer.WriteLine(); // Aggiunge una riga vuota per separare le informazioni delle navi
+                }
+                if (i == 0) 
+                {
+
+                }
             }
+
             cronologia.Text = cronologia.Text + "Navi posizionate automaticamente\r\n"; // Aggiorna la cronologia con il messaggio corrispondente
             GraficaTabelle(); // Aggiorna la grafica delle tabelle dopo il posizionamento automatico delle navi
         }
@@ -689,7 +705,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
 
         private string ConvertiInStringaCoord(int riga, int colonna) // Funzione per convertire le coordinate numeriche in una stringa di coordinate leggibile (es. A1, B2, ecc.)
         {
-            char[] lettere = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L' }; // Array di lettere corrispondenti alle colonne della griglia
+            char[] lettere = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' }; // Array di lettere corrispondenti alle colonne della griglia
             int numeroRiga = riga + 1; // Aggiunge 1 alla riga per ottenere il numero corretto (da 1 a 10 invece di 0 a 9)
             return "" + lettere[colonna] + numeroRiga; // Restituisce la stringa di coordinate combinando la lettera della colonna e il numero della riga
         }
