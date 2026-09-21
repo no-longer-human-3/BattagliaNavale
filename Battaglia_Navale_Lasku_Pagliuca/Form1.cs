@@ -49,7 +49,7 @@ namespace Battaglia_Navale_Lasku_Pagliuca
         bool[] naviPosizionate = new bool[navi]; // Mantiene traccia di quali navi sono già sulla griglia
         Random rnd = new Random(); // Oggetto Random per generare numeri casuali per il posizionamento automatico delle navi
 
-        string FilePath = @"C: \Users\invuz\desktop\File.txt"; 
+        string FilePath = @"C:\Users\matti\Desktop\Navi.txt"; 
 
         private void GraficaTabelle() // Funzione per aggiornare la grafica delle tabelle di gioco
         {
@@ -679,19 +679,22 @@ namespace Battaglia_Navale_Lasku_Pagliuca
                         posizionamento = true; // Imposta la variabile di supporto a true per uscire dal ciclo while
                     }
                 }
-
-                using (StreamWriter writer = new StreamWriter("File.txt", true)) // Apre il file "File.txt" in modalità append per scrivere le posizioni delle navi
+            }
+            
+            using (StreamWriter writer = new StreamWriter(FilePath, false)) // 'false' sovrascrive il file ad ogni nuova generazione
+            {
+                for (int d = 0; d < navi; d++)
                 {
-                    writer.WriteLine("Nave: " + miaFlotta[i].nome); // Scrive il nome della nave nel file
-                    for (int j = 0; j < miaFlotta[i].dim; j++) // Ciclo per scrivere le coordinate di ciascun segmento della nave
+                    string inizio = ConvertiInStringaCoord(miaFlotta[d].Coord[0].Riga, miaFlotta[d].Coord[0].Colonna);
+                    int ultimoIndice = miaFlotta[d].dim - 1;
+                    string fine = ConvertiInStringaCoord(miaFlotta[d].Coord[ultimoIndice].Riga, miaFlotta[d].Coord[ultimoIndice].Colonna);
+
+                    writer.Write(miaFlotta[d].nome + ":" + inizio + "-" + fine);
+
+                    if (d < navi - 1)
                     {
-                        writer.WriteLine("Segmento " + (j + 1) + ": " + ConvertiInStringaCoord(miaFlotta[i].Coord[j].Riga, miaFlotta[i].Coord[j].Colonna)); // Scrive le coordinate del segmento nel file
+                        writer.Write(";");
                     }
-                    writer.WriteLine(); // Aggiunge una riga vuota per separare le informazioni delle navi
-                }
-                if (i == 0) 
-                {
-
                 }
             }
 
